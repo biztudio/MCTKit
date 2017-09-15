@@ -1,0 +1,1 @@
+.\mctenv\Scripts\activate

@@ -345,3 +345,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# python virtual env
+mctenv/
