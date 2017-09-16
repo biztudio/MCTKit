@@ -6,3 +6,4 @@ flask
 tornado
 behave
 asyncio
+pylint
