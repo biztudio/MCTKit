@@ -7,3 +7,4 @@ flask
 tornado
 behave
 asyncio
+python-language-server
