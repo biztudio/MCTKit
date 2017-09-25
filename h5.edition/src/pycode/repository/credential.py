@@ -1,10 +1,10 @@
 '''
     Credential repository
 '''
-from base_entity import db, BaseEntity
+from base_entity import db
 
-class Credential(BaseEntity):
-    __table__ = 'credential'
+class Credential(db.Model):
+    #__tablename__ = 'credential'
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(200))
     password = db.Column(db.String(200))
@@ -14,11 +14,11 @@ class Credential(BaseEntity):
         self.username = username
         self.password = password
         self.token = token
-        self.id = cid
-    '''
-    def __init__(self):
-        pass
-    '''
+        #self.id = cid
+
+    def __repr__(self):
+        print (self.id)
+        return '<Credential %r>' % (self.username)    
 
 class CredentialRepository:
     
@@ -33,5 +33,5 @@ class CredentialRepository:
 
 if __name__ == "__main__":
     cr = CredentialRepository()
-    allc = cr.entity_version()
+    allc = cr.query_all_credential()
     print(allc)
