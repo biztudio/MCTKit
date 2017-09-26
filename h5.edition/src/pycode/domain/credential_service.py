@@ -1,16 +1,24 @@
 '''
     Credential Domain Service
 '''
-from repository.credential import CredentialRepository
+from domain_service import DomainBase
+from credential import CredentialRepository
 
-class CredentialService:
+class CredentialService(DomainBase):
     def __init__(self):
         self.repository = CredentialRepository()
 
     def authentication(self, username, password):
-        all_credential = self.repository.query_all_credential()
-        print(all_credential)
+        credential = self.repository.query_credential_by_username(username)        
+        if credential:
+            if credential.password == password:
+                return 1
+            else:
+                return -1
+        else:
+            return 0
 
 if __name__ == '__main__':
     credential_domain = CredentialService()
-    credential_domain.authentication('mctuser','')
+    auth_resutl = credential_domain.authentication('mctuser','1')
+    print(auth_resutl)

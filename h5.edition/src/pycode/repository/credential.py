@@ -15,23 +15,19 @@ class Credential(db.Model):
         self.password = password
         self.token = token
         #self.id = cid
-
-    def __repr__(self):
-        print (self.id)
-        return '<Credential %r>' % (self.username)    
-
+    
 class CredentialRepository:
     
     def query_all_credential(self):
         return Credential.query.all()
-    '''
-    def __init__(self):
-        self.repository = Credential()
-    '''
+    
+    def query_credential_by_username(self, username):
+        return Credential.query.filter_by(username=username).first()
+
     def entity_version(self):
         return '1.0'
 
 if __name__ == "__main__":
     cr = CredentialRepository()
-    allc = cr.query_all_credential()
+    allc = cr.query_all_credential()    
     print(allc)
