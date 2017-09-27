@@ -4,13 +4,16 @@
 from base_entity import db
 
 class Credential(db.Model):
-    #__tablename__ = 'credential'
+    '''
+        Example: To optimize memory consumption
+    '''            
+    #__slots__ = ('id', 'username', 'password', 'token')
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(200))
     password = db.Column(db.String(200))
     token = db.Column(db.String(200))
-   
-    def __init__(self, cid, username, password, token):
+
+    def __init__(self, username, password, token):
         self.username = username
         self.password = password
         self.token = token
