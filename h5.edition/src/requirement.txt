@@ -10,3 +10,4 @@ tornado
 behave
 asyncio
 python-language-server
+wfastcgi

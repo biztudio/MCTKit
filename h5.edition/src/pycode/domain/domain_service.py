@@ -9,3 +9,6 @@ sys.path.append(repository_foler)
 class DomainBase:
     def __init__(self):
         pass
+
+    def get_version(self):
+        return '1.0'    
