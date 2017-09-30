@@ -27,7 +27,13 @@ class TotoItemRepository:
     def query_todoitems_by_groupid(self, groupid):
         return Todoitem.query.filter_by(groupid=groupid)
 
+    def query_todoitems_tobedone_by_groupid(self, groupid):
+        return Todoitem.query.filter_by(groupid=groupid).filter_by(status=0)
+
 if __name__ == '__main__':
     tr = TotoItemRepository()
     tis = tr.query_all_todoitems()
-    [print(ti.title, ': ', ti.status) for ti in tis]
+    [print(ti.id,'. ', ti.title, ': ', ti.status) for ti in tis]
+
+    tig = tr.query_todoitems_by_groupid(1)
+    [print('group: ', ti.groupid,' - ',ti.id,'. ', ti.title, ': ', ti.status) for ti in tig]
