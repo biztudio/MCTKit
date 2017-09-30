@@ -5,9 +5,11 @@ flask-httpauth
 flask-login
 flask-bootstrap
 flask-script
-flask
+flask-exceptional
+flask-oauth
+flask-misaka
+flask-mail
 tornado
 behave
 asyncio
 python-language-server
-wfastcgi
