@@ -2,8 +2,8 @@
     RESTful service for todoitem
 '''
 import base_resource
-from todolist_service import TodoListService
 from flask_restful import Resource
+from todolist_service import TodoListService
 
 class TodoItemResource(Resource):
     def __init__(self):

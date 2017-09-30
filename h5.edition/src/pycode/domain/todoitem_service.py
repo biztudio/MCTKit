@@ -20,7 +20,7 @@ class TodoItem:
             self.status = TodoItem_Status_Enum(0)
         else:
             self.status = TodoItem_Status_Enum(status)
-
+   
 class TodoItemService(DomainBase):
     def __init__(self):
         self.repository = TotoItemRepository()

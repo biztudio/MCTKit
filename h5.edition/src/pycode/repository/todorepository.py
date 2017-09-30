@@ -1,7 +1,8 @@
 '''
     Todo item repository
 '''
-from base_entity import db
+#from flask_marshmallow import Marshmallow
+from base_entity import db, mash
 
 class Todoitem(db.Model):
     '''
@@ -19,13 +20,18 @@ class Todoitem(db.Model):
         self.groupid = groupid
         self.status = status
 
+class TodoitemSchema(mash.Schema):
+    class Meta:
+        model = Todoitem
+
 class TotoItemRepository:
 
     def query_all_todoitems(self):
         return Todoitem.query.all()
 
     def query_todoitems_by_groupid(self, groupid):
-        return Todoitem.query.filter_by(groupid=groupid)
+        todo_schema = TodoitemSchema()
+        return todo_schema.dump(Todoitem.query.filter_by(groupid=groupid)[0]).data
 
     def query_todoitems_tobedone_by_groupid(self, groupid):
         return Todoitem.query.filter_by(groupid=groupid).filter_by(status=0)
