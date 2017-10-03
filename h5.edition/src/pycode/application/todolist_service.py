@@ -9,7 +9,8 @@ class TodoListService(ApplicationBase):
         self.todoitemservice = TodoItemService()
 
     def list_todoitem_by_group(self, groupid):
-        return self.todoitemservice.query_items_by_groupid(groupid)
+        list_by_group = self.todoitemservice.query_items_by_groupid(groupid)
+        return list_by_group
 
 if __name__ == '__main__':
     list_svr = TodoListService()

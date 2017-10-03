@@ -2,7 +2,7 @@
     Todo item repository
 '''
 #from flask_marshmallow import Marshmallow
-from base_entity import db, mash
+from base_entity import db
 
 class Todoitem(db.Model):
     '''
@@ -15,14 +15,12 @@ class Todoitem(db.Model):
     status = db.Column(db.Integer)
 
     def __init__(self, title, comment, groupid, status):
+        print('Initialized')
         self.comment = comment
         self.title = title
         self.groupid = groupid
         self.status = status
-
-class TodoitemSchema(mash.Schema):
-    class Meta:
-        model = Todoitem
+        self.id = -1
 
 class TotoItemRepository:
 
@@ -30,16 +28,7 @@ class TotoItemRepository:
         return Todoitem.query.all()
 
     def query_todoitems_by_groupid(self, groupid):
-        todo_schema = TodoitemSchema()
-        return todo_schema.dump(Todoitem.query.filter_by(groupid=groupid)[0]).data
+        return Todoitem.query.filter_by(groupid=groupid)
 
     def query_todoitems_tobedone_by_groupid(self, groupid):
         return Todoitem.query.filter_by(groupid=groupid).filter_by(status=0)
-
-if __name__ == '__main__':
-    tr = TotoItemRepository()
-    tis = tr.query_all_todoitems()
-    [print(ti.id,'. ', ti.title, ': ', ti.status) for ti in tis]
-
-    tig = tr.query_todoitems_by_groupid(1)
-    [print('group: ', ti.groupid,' - ',ti.id,'. ', ti.title, ': ', ti.status) for ti in tig]

@@ -15,7 +15,7 @@ class TodoItem:
         self.comment = comment
         self.title = title
         self.groupid = groupid
-        self.itemid = itemid
+        self.id = itemid
         if status is None:
             self.status = TodoItem_Status_Enum(0)
         else:
