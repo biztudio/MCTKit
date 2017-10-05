@@ -23,6 +23,7 @@ def home():
 
 @app.route('/tsimp')
 def todo_simple():
+    #Flask's template may conflict with Vue template....
     return app.send_static_file("todoitem_simp.html")#render_template('todoitem_simp.html')
 
 if __name__ == '__main__':
