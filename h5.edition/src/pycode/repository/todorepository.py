@@ -20,7 +20,6 @@ class Todoitem(db.Model):
         self.title = title
         self.groupid = groupid
         self.status = status
-        self.id = -1
 
 class TotoItemRepository:
 

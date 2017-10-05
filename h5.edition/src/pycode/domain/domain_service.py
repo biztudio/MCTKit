@@ -6,6 +6,8 @@ sys.path.append(repository_foler)
 #print(repository_foler)
 #print(sys.path)
 
+print('Domain service is being consuming...')
+
 class DomainBase:
     def __init__(self):
         pass

@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Todo List</title>
+    </head>
+
+    <body>
+        <div id='todo-app'>
+            <h1>Todo App</h1>
+            <input type="text" placeholder="new todo item" v-model="todo"/><button @click="add">Add</button>
+            <ul>
+                <li v-for='(item, index) in items'>{{item.title}}<button @click="remove(index)">X</button></li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+            axios.get('http://localhost:5000/todoitem/1')
+            .then(function (response) {
+                items_list = (response.data.todoitem);
+
+                var app = new Vue({
+                    el:'#todo-app',
+                    data:{
+                        items: items_list,
+                        todo:''
+                    },
+                    methods:{
+                        remove:function(i){
+                            this.items.splice(i, 1)
+                        },
+                        add:function(){
+                            if(this.todo){
+                                this.items.push(this.todo)
+                                this.todo = ''
+                            }
+                        }
+                    }
+                });
+
+            })
+            .catch(function (error) {
+                alert(error);
+            });
+
+
+            
+        </script>
+    </body>    
+</html>

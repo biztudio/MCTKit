@@ -4,6 +4,7 @@ domain_foler = folder.replace("application","domain")
 sys.path.append(domain_foler)
 
 #from domain_service import DomainBase
+print('Application service is being consuming...')
 
 class ApplicationBase:
     def __init__(self):
