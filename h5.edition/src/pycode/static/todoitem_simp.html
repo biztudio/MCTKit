@@ -16,20 +16,17 @@
         <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script type="text/javascript">
-            axios.get('http://localhost:5000/todoitem/1')
-            .then(function (response) {
-                items_list = (response.data.todoitem);
-
-                var app = new Vue({
+            var app = new Vue({
                     el:'#todo-app',
                     data:{
-                        items: items_list,
+                        items: [],
                         todo:''
                     },
                     methods:{
                         remove:function(i){
                             this.items.splice(i, 1)
                         },
+
                         add:function(){
                             if(this.todo){
                                 this.items.push(this.todo)
@@ -39,12 +36,15 @@
                     }
                 });
 
-            })
-            .catch(function (error) {
-                alert(error);
-            });
-
-
+            (function(){
+                axios.get('http://localhost:5000/todoitem/1')
+                    .then(function (response) {
+                        app.$data.items = (response.data.todoitem);
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+            })();
             
         </script>
     </body>    
