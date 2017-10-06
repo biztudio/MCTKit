@@ -31,12 +31,13 @@
                             if(this.todo){
                                 this.items.push(this.todo)
                                 this.todo = ''
+                                fetch_items();
                             }
                         }
                     }
                 });
 
-            (function(){
+            var fetch_items = function(){
                 axios.get('http://localhost:5000/todoitem/1')
                     .then(function (response) {
                         app.$data.items = (response.data.todoitem);
@@ -44,7 +45,8 @@
                     .catch(function (error) {
                         alert(error);
                     });
-            })();
+            };
+            fetch_items();
             
         </script>
     </body>    
