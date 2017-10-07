@@ -29,9 +29,15 @@
 
                         add:function(){
                             if(this.todo){
-                                this.items.push(this.todo)
+                                this.items.push({
+                                    id:-1,
+                                    title:this.todo,
+                                    comment:'',
+                                    groupid:1,
+                                    'status':0
+                                    })
                                 this.todo = ''
-                                fetch_items();
+                                //fetch_items();
                             }
                         }
                     }
