@@ -31,3 +31,14 @@ class TotoItemRepository:
 
     def query_todoitems_tobedone_by_groupid(self, groupid):
         return Todoitem.query.filter_by(groupid=groupid).filter_by(status=0)
+
+    def add_new_todoitem(self, new_todoitem):
+        db.session.add(new_todoitem)
+        db.session.commit()
+
+    def complete_todoitem(self, todoitem_id):
+        todoitem = Todoitem.query.filter_by(id=todoitem_id).first()
+        if todoitem:
+            todoitem.status = 10
+            db.session.add(todoitem)
+            db.session.commit()    
