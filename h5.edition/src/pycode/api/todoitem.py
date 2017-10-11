@@ -2,7 +2,7 @@
     RESTful service for todoitem
 '''
 import base_resource
-from flask_restful import Resource, fields, marshal_with
+from flask_restful import Resource, fields, marshal_with, reqparse
 from todolist_service import TodoListService
 
 #http://flask-restful.readthedocs.io/en/latest/fields.html
@@ -14,7 +14,7 @@ todoitem_resource_fields = {
     'status': fields.String,
 }
 
-class TodoItemResource(Resource):
+class TodoItemQueryByGroupResource(Resource):
     '''
     RESTful API for todo items
     '''
@@ -25,3 +25,23 @@ class TodoItemResource(Resource):
     def get(self, groupid):
         todoitems = self.list_app_service.list_todoitem_by_group(groupid)
         return todoitems
+
+class TodoItemDataResource(Resource):
+    '''
+    RESTful API for add/update todo items
+    '''
+    def __init__(self):
+        self.arg_parser = reqparse.RequestParser()
+        self.list_app_service = TodoListService()
+
+    def post(self):
+        #arg_parser = reqparse.RequestParser()
+        self.arg_parser.add_argument('title')
+        self.arg_parser.add_argument('comment')
+        self.arg_parser.add_argument('groupid')
+        self.arg_parser.add_argument('status')
+        args = self.arg_parser.parse_args()
+        new_todo_item = {'title':args['title'], 'comment':args['comment'], 'groupid':args['groupid'], 'status':args['status']}
+        print(new_todo_item)
+        print('New Todo item: ')
+        self.list_app_service.add_todoitem(new_todo_item)

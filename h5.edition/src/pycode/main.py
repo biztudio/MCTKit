@@ -5,7 +5,6 @@ from flask import render_template
 from flaskapp import app
 from flask_restful import Api
 from config import DebugConfig
-from flask_json import FlaskJSON
 
 import os, sys
 app_folder = os.path.abspath(os.path.dirname(__file__))
@@ -13,13 +12,13 @@ api_foler = app_folder + "\\api"
 #sys.path.append(app_folder)
 sys.path.append(api_foler)
 print(api_foler)
-from todoitem import TodoItemResource
+from todoitem import TodoItemQueryByGroupResource, TodoItemDataResource
 
 app.config.from_object(DebugConfig)
 api = Api(app)
-FlaskJSON(app)
 
-api.add_resource(TodoItemResource, '/todoitem/<groupid>')
+api.add_resource(TodoItemQueryByGroupResource, '/todoitem/<groupid>')
+api.add_resource(TodoItemDataResource, '/todoitem')
 
 @app.route('/')
 def home():

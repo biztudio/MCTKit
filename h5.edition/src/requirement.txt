@@ -8,10 +8,10 @@ flask-script
 flask-exceptional
 flask-oauth
 flask-mail
-flask-json
 flask-marshmallow
 marshmallow-sqlalchemy
 tornado
 behave
 asyncio
+TinyDB
 python-language-server

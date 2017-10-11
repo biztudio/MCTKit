@@ -13,6 +13,9 @@ class TodoListService(ApplicationBase):
         list_by_group = self.todoitemservice.query_items_by_groupid(groupid)
         return list_by_group
 
+    def add_todoitem(self, todoitem):
+        self.todoitemservice.add_todoitem(todoitem)
+
 if __name__ == '__main__':
     list_svr = TodoListService()
     [print(i.title,': ',i.status) for i in list_svr.list_todoitem_by_group(1)]
