@@ -35,13 +35,11 @@ class TodoItemDataResource(Resource):
         self.list_app_service = TodoListService()
 
     def post(self):
-        #arg_parser = reqparse.RequestParser()
         self.arg_parser.add_argument('title')
         self.arg_parser.add_argument('comment')
         self.arg_parser.add_argument('groupid')
         self.arg_parser.add_argument('status')
         args = self.arg_parser.parse_args()
         new_todo_item = {'title':args['title'], 'comment':args['comment'], 'groupid':args['groupid'], 'status':args['status']}
-        print(new_todo_item)
-        print('New Todo item: ')
         self.list_app_service.add_todoitem(new_todo_item)
+        return {'NewTodoItem':new_todo_item['title']}, 201

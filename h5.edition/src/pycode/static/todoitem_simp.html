@@ -7,7 +7,7 @@
     <body>
         <div id='todo-app'>
             <h1>Todo App</h1>
-            <input type="text" placeholder="new todo item" v-model="todo"/><button @click="add">Add</button>
+            <input type="text" placeholder="new todo item" v-model="todo"/><button @click="add_new_todoitem">Add</button>
             <ul>
                 <li v-for='(item, index) in items'>{{item.title}}<button @click="remove(index)">X</button></li>
             </ul>
@@ -27,17 +27,28 @@
                             this.items.splice(i, 1)
                         },
 
-                        add:function(){
+                        add_new_todoitem:function(){
                             if(this.todo){
-                                this.items.push({
-                                    id:-1,
+                                axios.post('http://localhost:5000/todoitem',{
                                     title:this.todo,
                                     comment:'',
                                     groupid:1,
-                                    'status':0
-                                    })
-                                this.todo = ''
-                                //fetch_items();
+                                    status:0
+                                })
+                                .then(function(response){
+                                    this.items.push({
+                                        id:-1,
+                                        title:this.todo,
+                                        comment:'',
+                                        groupid:1,
+                                        'status':0
+                                    });
+                                    this.todo = ''
+                                    //console.log(response);
+                                })
+                                .catch(function(error){
+                                    console.log(error);
+                                });
                             }
                         }
                     }
