@@ -30,4 +30,4 @@ def todo_simple():
     return app.send_static_file("todoitem_simp.html")#render_template('todoitem_simp.html')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

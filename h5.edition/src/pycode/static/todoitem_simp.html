@@ -33,32 +33,35 @@
                                 alert(error);
                             });
                     },
+                    
                     methods:{
                         remove:function(i){
                             this.items.splice(i, 1)
                         },
 
                         add_new_todoitem:function(){
-                            if(this.todo){
-                                axios.post('http://localhost:5000/todoitem',{
-                                    title:this.todo,
-                                    comment:'',
-                                    groupid:1,
-                                    status:0
-                                })
-                                .then(function(response){
-                                    this.items.push({
+                            this.items.push({
                                         id:-1,
                                         title:this.todo,
                                         comment:'',
                                         groupid:1,
                                         'status':0
                                     });
-                                    this.todo = ''
-                                    //console.log(response);
+                            if(this.todo){
+                                //This is not this in called functions
+                                var appinst = this;
+                                axios.post('http://localhost:5000/todoitem',{
+                                    title:appinst.todo,
+                                    comment:'',
+                                    groupid:1,
+                                    status:0
+                                })
+                                .then(function(response){
+                                    appinst.todo = '';
                                 })
                                 .catch(function(error){
                                     console.log(error);
+                                    alert('Failed to POST data.');
                                 });
                             }
                         }
