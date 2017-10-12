@@ -3,12 +3,11 @@
     https://blog.miguelgrinberg.com/post/restful-authentication-with-flask
 '''
 import base_resource
-from flask_restful import Resource, fields, marshal_with, reqparse
+from flask_restful import Resource, reqparse, fields, marshal_with
 from authentication_service import AuthenticationService
 
-credential_resource_fields = {
-    'username': fields.String,
-    'password': fields.String
+authentication_fields = {
+    'result':fields.String
 }
 
 class AuthenticationResource(Resource):
@@ -16,15 +15,14 @@ class AuthenticationResource(Resource):
     Authentication to determine if the api is available
     '''
     def __init__(self):
+        self.parser = reqparse.RequestParser()
         self.auth_service = AuthenticationService()
 
-    #@marshal_with(credential_resource_fields, envelope='credential')
-    def get(self, username, password):
-        #result = self.auth_service.authenticate_credential(username, password)
-        #return result, 201
-        #print(credential_resource_fields)
-        parser = reqparse.RequestParser()
-        parser.add_argument('username', type=str)
-        parser.add_argument('password', type=str)
-        print(parser.parse_args())
-        return 200
+    @marshal_with(authentication_fields, envelope='authentication')
+    def post(self):
+        self.parser.add_argument('username')
+        self.parser.add_argument('password')
+        args = self.parser.parse_args()
+        result = self.auth_service.authenticate_credential(args['username'], args['password'])
+        print(result)
+        return result, 201
