@@ -8,17 +8,23 @@ from config import DebugConfig
 
 import os, sys
 app_folder = os.path.abspath(os.path.dirname(__file__))
-api_foler = app_folder + "\\api"
-#sys.path.append(app_folder)
-sys.path.append(api_foler)
+linux_path_pattern = ('/' in app_folder)
+if linux_path_pattern:
+    api_foler = app_folder + "/api"
+else:
+    api_foler = app_folder + "\\api"
+print(app_folder)
 print(api_foler)
+sys.path.append(api_foler)
 from todoitem import TodoItemQueryByGroupResource, TodoItemDataResource
+from authentication import AuthenticationResource
 
 app.config.from_object(DebugConfig)
 api = Api(app)
 
 api.add_resource(TodoItemQueryByGroupResource, '/todoitem/<groupid>')
 api.add_resource(TodoItemDataResource, '/todoitem')
+api.add_resource(AuthenticationResource, '/authentication', endpoint='authentication')
 
 @app.route('/')
 def home():

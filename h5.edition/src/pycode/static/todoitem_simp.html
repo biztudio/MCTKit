@@ -25,7 +25,7 @@
 
                     created: function () {
                         var that = this;//dont make confusion when calling 'this' in other fuction.
-                        axios.get('http://localhost:5000/todoitem/1')
+                        axios.get('http://localhost:5108/todoitem/1')
                             .then(function (response) {
                                 that.items = (response.data.todoitem);
                             })
@@ -33,7 +33,7 @@
                                 alert(error);
                             });
                     },
-                    
+
                     methods:{
                         remove:function(i){
                             this.items.splice(i, 1)
@@ -50,7 +50,7 @@
                             if(this.todo){
                                 //This is not this in called functions
                                 var appinst = this;
-                                axios.post('http://localhost:5000/todoitem',{
+                                axios.post('http://localhost:5108/todoitem',{
                                     title:appinst.todo,
                                     comment:'',
                                     groupid:1,

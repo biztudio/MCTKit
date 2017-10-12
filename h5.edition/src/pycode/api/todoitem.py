@@ -31,6 +31,9 @@ class TodoItemDataResource(Resource):
     RESTful API for add/update todo items
     '''
     def __init__(self):
+        #The whole request parser part of Flask-RESTful is slated for removal
+        #To do the input/output stuff better (such as marshmallow)
+        #https://flask-marshmallow.readthedocs.io/en/latest/
         self.arg_parser = reqparse.RequestParser()
         self.list_app_service = TodoListService()
 
