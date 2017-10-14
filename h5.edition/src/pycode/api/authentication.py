@@ -8,8 +8,9 @@ from flask_restful import Resource, fields, marshal_with
 from authentication_service import AuthenticationService
 
 authentication_result_fields = {
-    'result': fields.String,
-    'token':fields.String
+    'uid':fields.Integer,
+    'username':fields.String,
+    'validation':fields.String,
 }
 
 class AuthenticationResource(Resource):
@@ -19,9 +20,9 @@ class AuthenticationResource(Resource):
     def __init__(self):
         self.auth_service = AuthenticationService()
 
-    @marshal_with(authentication_result_fields, envelope='authentication')
+    #@marshal_with(authentication_result_fields, envelope='authentication')
     def post(self):
         username = request.form.get('username')
         password = request.form.get('password')
-        result = self.auth_service.authenticate_credential(username, password).value
-        return {'result':result, 'token':''}, 201
+        result = self.auth_service.authenticate_credential(username, password)
+        return result, 201

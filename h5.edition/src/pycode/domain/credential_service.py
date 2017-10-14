@@ -4,6 +4,8 @@
 from enum import Enum
 from domain_service import DomainBase
 from credential import CredentialRepository
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flaskapp import app, token_expiration_seconds
 
 class Authentication_Result_Enum(Enum):
     Valid = 1
@@ -15,16 +17,17 @@ class CredentialService(DomainBase):
         self.repository = CredentialRepository()
 
     def authentication(self, username, password):
-        credential = self.repository.query_credential_by_username(username)        
+        credential = self.repository.query_credential_by_username(username)  
+        authentication_result = {'uid':0, 'username':'', 'token':'', 'validation':''}      
         if credential:
+            authentication_result['uid'] = credential.id
+            authentication_result['username'] = credential.username
             if credential.password == password:
-                return Authentication_Result_Enum.Valid
+                s = Serializer(app.config['SECRET_KEY'], expires_in = token_expiration_seconds)
+                authentication_result['token'] = s.dumps({ 'id': credential.id }).decode('ascii') 
+                authentication_result['validation'] = Authentication_Result_Enum.Valid.value
             else:
-                return Authentication_Result_Enum.InvalidPassword
+                authentication_result['validation'] = Authentication_Result_Enum.InvalidPassword.value
         else:
-            return Authentication_Result_Enum.InvalidUsername
-
-if __name__ == '__main__':
-    credential_domain = CredentialService()
-    auth_resutl = credential_domain.authentication('mctuser','1')
-    print(auth_resutl)
+            authentication_result['validation'] = Authentication_Result_Enum.InvalidUsername.value
+        return authentication_result
