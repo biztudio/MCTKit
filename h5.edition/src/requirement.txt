@@ -9,6 +9,7 @@ flask-exceptional
 flask-oauth
 flask-mail
 flask-marshmallow
+flask-pagedown
 marshmallow-sqlalchemy
 tornado
 behave
