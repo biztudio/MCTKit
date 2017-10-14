@@ -10,6 +10,7 @@ flask-oauth
 flask-mail
 flask-marshmallow
 flask-pagedown
+flask-markdown
 marshmallow-sqlalchemy
 tornado
 behave
