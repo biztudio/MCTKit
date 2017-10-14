@@ -2,6 +2,7 @@
     RESTful service for todoitem
 '''
 import base_resource
+from flaskapp import bearer_token_auth
 from flask_restful import Resource, fields, marshal_with, reqparse
 from todolist_service import TodoListService
 
@@ -21,6 +22,7 @@ class TodoItemQueryByGroupResource(Resource):
     def __init__(self):
         self.list_app_service = TodoListService()
 
+    @bearer_token_auth.login_required
     @marshal_with(todoitem_resource_fields, envelope='todoitem')
     def get(self, groupid):
         todoitems = self.list_app_service.list_todoitem_by_group(groupid)
@@ -37,6 +39,7 @@ class TodoItemDataResource(Resource):
         self.arg_parser = reqparse.RequestParser()
         self.list_app_service = TodoListService()
 
+    @bearer_token_auth.login_required
     def post(self):
         self.arg_parser.add_argument('title')
         self.arg_parser.add_argument('comment')
