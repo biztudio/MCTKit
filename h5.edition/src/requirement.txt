@@ -5,8 +5,16 @@ flask-httpauth
 flask-login
 flask-bootstrap
 flask-script
-flask
+flask-exceptional
+flask-oauth
+flask-mail
+flask-marshmallow
+flask-pagedown
+flask-markdown
+marshmallow-sqlalchemy
 tornado
 behave
 asyncio
+TinyDB
 python-language-server
+httpie

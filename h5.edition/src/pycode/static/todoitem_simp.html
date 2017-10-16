@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Todo List</title>
+        <link rel="shortcut icon" href="./static/favicon.ico" />
+        <link rel="stylesheet" href="./static/mctstyle.css" type="text/css" />
+    </head>
+
+    <body>
+        <div id='todo-app'>
+            <h1>Todo App</h1>
+            <input type="text" placeholder="new todo item" v-model="todo"/><button @click="add_new_todoitem">Add</button>
+            <ul>
+                <li v-for='(item, index) in items'>{{item.title}}<button @click="remove(index)">X</button></li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                    el:'#todo-app',
+                    data:{
+                        items: [],
+                        todo:''
+                    },
+
+                    created: function () {
+                        var that = this;//dont make confusion when calling 'this' in other fuction.
+                        axios.get('http://localhost:5108/todoitem/1')
+                            .then(function (response) {
+                                that.items = (response.data.todoitem);
+                            })
+                            .catch(function (error) {
+                                alert(error);
+                            });
+                    },
+
+                    methods:{
+                        remove:function(i){
+                            this.items.splice(i, 1)
+                        },
+
+                        add_new_todoitem:function(){
+                            this.items.push({
+                                        id:-1,
+                                        title:this.todo,
+                                        comment:'',
+                                        groupid:1,
+                                        'status':0
+                                    });
+                            if(this.todo){
+                                //This is not this in called functions
+                                var appinst = this;
+                                axios.post('http://localhost:5108/todoitem',{
+                                    title:appinst.todo,
+                                    comment:'',
+                                    groupid:1,
+                                    status:0
+                                })
+                                .then(function(response){
+                                    appinst.todo = '';
+                                })
+                                .catch(function(error){
+                                    console.log(error);
+                                    alert('Failed to POST data.');
+                                });
+                            }
+                        }
+                    }
+                });
+
+        </script>
+    </body>    
+</html>
