@@ -1,13 +1,20 @@
 //app entry js, it loads component js lib & components
-import Vue from 'vue'
+import Vue from "vue"
 
-//import todolist from './todolist.vue'
-//Vue.component('Todolist', todolist)
+import todolist from './todolist.vue'
+Vue.component('Todolist', todolist)
+console.log('vue playground')
 
-app = new Vue({
+var papp = new Vue({
     el: "#todo-app",
     data:{
-        greetings:'hello'
+        greetings:'hello',
+    },
+
+    methods:{
+        add_new_todoitem:function(){
+            console.log('Hi, todo.')
+        }
     }
-});
+})
 /**/

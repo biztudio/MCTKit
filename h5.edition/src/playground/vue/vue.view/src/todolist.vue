@@ -7,7 +7,7 @@
 export default {
     data(){
         return{
-            GreetingMessage:'Hello Todo List'
+            GreetingMessage:'Hello Todo List (inner .vue)'
         }
     }
 }

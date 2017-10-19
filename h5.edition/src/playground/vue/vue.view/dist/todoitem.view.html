@@ -9,10 +9,13 @@
     <body>
         <div id='todo-app'>
             <h1>Todo App</h1>
-            <input type="text" placeholder="new todo item" v-model="todo"/><button @click="add_new_todoitem">Add</button>
+            <input type="text" placeholder="new todo item" /><button @click="add_new_todoitem">Add</button>
             <Todolist />
             <div>{{greetings}}</div>
         </div>
-        <script src="./app.bundle.js" />
+        <!-- -->
+        <script src="./vendor.bundle.js" ></script>
+        <script src="./app.bundle.js" ></script>
+        
     </body>    
 </html>

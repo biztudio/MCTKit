@@ -3,7 +3,7 @@
 module.exports = {
     data:function(){
         return{
-            GreetingMessage:'Hello Todo List'
+            GreetingMessage:'Hello Todo List!'
         }
     }
 }
