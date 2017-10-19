@@ -351,3 +351,4 @@ typings/
 # python virtual env
 mctenv/
 package-lock.json
+/h5.edition/src/package-lock.json
