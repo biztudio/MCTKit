@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
     entry:{
@@ -7,7 +8,6 @@ module.exports = {
     },
     output:{
         path: path.resolve(__dirname, './dist'),
-        publicPath: '../dist',
         filename: '[name].bundle.js'
     },
     module:{
@@ -33,9 +33,10 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
-    }
+    plugins:[
+        new CleanWebpackPlugin(
+            ['dist/*.bundle.js.map', 'dist/*.bundle.js'],　 //delete mapped file
+            { root: __dirname, verbose: true, dry: false}
+        )
+    ]
 }
