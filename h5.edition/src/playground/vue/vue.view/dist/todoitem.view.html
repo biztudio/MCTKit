@@ -15,9 +15,10 @@
            
             
             <input v-model="section_count">
+            <!-- if the component prop is bind to the container page's data, then v-bind is required -->
             <keycode v-bind:prop_length='section_count' id='my_keycode'></keycode>
-
-            <keycode v-bind:prop_length='4' id='my_feature_keycode'></keycode>
+            <!-- if a static setting to prop, then v-bind is no need -->
+            <keycode prop_length='4' id='my_feature_keycode'></keycode>
 
         </div>
         <!-- referred common lib, such as vue -->
