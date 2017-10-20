@@ -8,13 +8,21 @@
 
     <body>
         <div id='todo-app'>
-            <h1>Todo App</h1>
+            <h1>Vue App</h1>
             <input type="text" placeholder="new todo item" /><button @click="add_new_todoitem">Add</button>
-            <Todolist />
-            <div>{{greetings}}</div>
+           
+            <todolist ></todolist>
+           
+            
+            <input v-model="section_count">
+            <keycode v-bind:prop_length='section_count' id='my_keycode'></keycode>
+
+            <keycode v-bind:prop_length='4' id='my_feature_keycode'></keycode>
+
         </div>
-        <!-- -->
+        <!-- referred common lib, such as vue -->
         <script src="./vendor.bundle.js" ></script>
+        <!-- js the app itself -->
         <script src="./app.bundle.js" ></script>
         
     </body>    

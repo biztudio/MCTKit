@@ -3,12 +3,6 @@
       {{GreetingMessage}}
   </p>
 </template>
-<script>
-export default {
-    data(){
-        return{
-            GreetingMessage:'Hello Todo List (inner .vue)'
-        }
-    }
-}
-</script>
+
+<script src='./todolist.js'></script>
+
