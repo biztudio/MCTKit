@@ -53,9 +53,15 @@ export default {
         },
 
         recal_keycode:function(event, index){
-            let new_code = this.$el.children[index].children[0].children[0].value
-            if(new_code){
-                this.license_code[index].value = new_code
+            let container_span = this.$el.children[index].children[0]
+            if(container_span){
+                let codebox = container_span.children[0]
+                if(codebox){
+                    let new_code = codebox.value
+                    if(new_code){
+                        this.license_code[index].value = new_code
+                    }
+                }
             }
         },
 
