@@ -353,3 +353,5 @@ mctenv/
 package-lock.json
 /h5.edition/src/package-lock.json
 /h5.edition/src/pycode/static/vue.view/dist/*.js
+/h5.edition/src/playground/vue/vue.view/dist/app.bundle.js
+/h5.edition/src/playground/vue/vue.view/dist/vendor.bundle.js

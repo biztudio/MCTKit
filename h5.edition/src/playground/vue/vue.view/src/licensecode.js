@@ -11,38 +11,71 @@
 export default {
     data(){
             return {
-                license_code:[]
+                license_code:[],
+                keylabel_id:''
         }
     },
+
+    computed:{
+        licensekeycode:function(){
+            return this.caculate_keycode()
+        }
+    },
+
     created: function () {
-        if(this.prop_length){
-            let prefix = this.keycode_id_prefix
-            if(!prefix){
-                prefix = 'keycode'
-            }
-            this.license_code = []
-            for(let index=0; index < this.prop_length; index++){
-                this.license_code[index] = {id:(prefix + '' + index), value:'TBD_I'}
-            }
+        if(!this.id){
+            this.keylabel_id = '_key_label_01'
+        }
+        else{
+            this.keylabel_id = this.id + '_key_label'
+        }
+        this.draw_keycode_box(this.prop_length)
+    },
+
+    watch:{
+        prop_length:function(boxcount){
+            this.draw_keycode_box(boxcount)
         }
     },
-    watch:{
-        prop_length:function(new_section_count){
-            this.prop_length = new_section_count
-            if(new_section_count){
+
+    methods:{
+        draw_keycode_box:function(boxcount){
+            if(boxcount){            
                 let prefix = this.keycode_id_prefix
                 if(!prefix){
                     prefix = 'keycode'
                 }
                 this.license_code = []
-                for(let index = 0; index < new_section_count; index++){
-                    this.license_code[index] = {id:(prefix + '' + index), value:'TBD_C'}
+                for(let index=0; index < boxcount; index++){
+                    this.license_code.push({id:(prefix + '' + index), value:''})
                 }
+            }
+        },
+
+        recal_keycode:function(event, index){
+            let new_code = this.$el.children[index].children[0].children[0].value
+            if(new_code){
+                this.license_code[index].value = new_code
+            }
+        },
+
+        caculate_keycode:function(){
+            if(this.license_code && this.license_code.length > 0){
+                let keycode = []
+                for(let code of this.license_code){
+                    if(code.value){
+                        keycode.push(code.value)
+                    }
+                } 
+                return keycode.join('-')
+            }
+            else{
+                return ''
             }
         }
     },
+
     props:[
-        'license_keycode',//TODO
         'prop_length',
         'keycode_id_prefix',
         'id'
