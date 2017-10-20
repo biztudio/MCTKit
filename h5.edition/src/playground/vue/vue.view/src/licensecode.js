@@ -16,9 +16,13 @@ export default {
     },
     created: function () {
         if(this.prop_length){
+            let prefix = this.keycode_id_prefix
+            if(!prefix){
+                prefix = 'keycode'
+            }
             this.license_code = []
             for(let index=0; index < this.prop_length; index++){
-                this.license_code[index] = {id:(this.id +'_keycode'+ index), value:'TBD_I'}
+                this.license_code[index] = {id:(prefix + '' + index), value:'TBD_I'}
             }
         }
     },
@@ -26,9 +30,13 @@ export default {
         prop_length:function(new_section_count){
             this.prop_length = new_section_count
             if(new_section_count){
+                let prefix = this.keycode_id_prefix
+                if(!prefix){
+                    prefix = 'keycode'
+                }
                 this.license_code = []
                 for(let index = 0; index < new_section_count; index++){
-                    this.license_code[index] = {id:(this.id + '_keycode'+ index), value:'TBD_C'}
+                    this.license_code[index] = {id:(prefix + '' + index), value:'TBD_C'}
                 }
             }
         }
@@ -36,6 +44,7 @@ export default {
     props:[
         'license_keycode',//TODO
         'prop_length',
+        'keycode_id_prefix',
         'id'
     ]
 }
