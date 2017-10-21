@@ -12,7 +12,8 @@ export default {
     data(){
             return {
                 license_code:[],
-                keylabel_id:''
+                keylabel_id:'_label_01',
+                separator:'-'
         }
     },
 
@@ -23,11 +24,11 @@ export default {
     },
 
     created: function () {
-        if(!this.id){
-            this.keylabel_id = '_label_01'
-        }
-        else{
+        if(this.id){
             this.keylabel_id = this.id + '_label'
+        }
+        if(this.splitby){
+            this.separator = this.splitby
         }
         this.draw_keycode_box(this.prop_length)
     },
@@ -60,17 +61,18 @@ export default {
                         keycode.push(code.value)
                     }
                 } 
-                return keycode.join('-')
+                if(keycode && keycode.length > 0){
+                    return keycode.join(this.separator)
+                }
             }
-            else{
-                return ''
-            }
+            return ''
         }
     },
 
     props:[
         'prop_length',
         'keycode_id_prefix',
-        'id'
+        'id',
+        'splitby'
     ]
 }
