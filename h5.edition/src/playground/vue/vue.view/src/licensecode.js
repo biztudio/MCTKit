@@ -24,10 +24,10 @@ export default {
 
     created: function () {
         if(!this.id){
-            this.keylabel_id = '_key_label_01'
+            this.keylabel_id = '_label_01'
         }
         else{
-            this.keylabel_id = this.id + '_key_label'
+            this.keylabel_id = this.id + '_label'
         }
         this.draw_keycode_box(this.prop_length)
     },
