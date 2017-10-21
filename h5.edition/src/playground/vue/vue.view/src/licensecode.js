@@ -52,19 +52,6 @@ export default {
             }
         },
 
-        recal_keycode:function(event, index){
-            let container_span = this.$el.children[index].children[0]
-            if(container_span){
-                let codebox = container_span.children[0]
-                if(codebox){
-                    let new_code = codebox.value
-                    if(new_code){
-                        this.license_code[index].value = new_code
-                    }
-                }
-            }
-        },
-
         caculate_keycode:function(){
             if(this.license_code && this.license_code.length > 0){
                 let keycode = []
