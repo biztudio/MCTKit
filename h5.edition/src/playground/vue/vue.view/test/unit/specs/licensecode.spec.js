@@ -1,6 +1,5 @@
-var assert = require('assert')
-var expect = require('chai').expect
-
+import assert from 'assert'
+import {expect} from "chai"
 import Vue from "vue"
 import licensecode from '../../../src/licensecode.vue'
 
@@ -26,21 +25,34 @@ describe('#license key code',function(){
         console.log('mocha test is simple')
         assert.equal('1', '1')
     })
-      
+         
     //it means test case
-    it('License Key Code is 1-2-3-4-5-6-7 when input license code box is [1,2,3,4,5,6,7]', () => {
-        //var codes = [1,2,3,4,5,6,7]
+    it("License Key Code is 1a-2B-3c-4D-5e-6F-7g when input license code box is ['1a','2B','3c','4D','5e','6F','7g']", () => {
         console.log('mocha test license')
         
-        const Constructor = Vue.extend(licensecode)
-        const licensecomp = new Constructor().$mount()   
-        licensecomp.id = 'TL'     
-        console.log(licensecomp.keylabel_id)
-        licensecomp.licensecode = ['1','2','3','4','5','6','7']
-        console.log(licensecomp.licensekeycode)
-        //expect(licensecomp.$el.licensekeycode).to.contain('1-2-3-4-5-6-7')
-        expect(4 + 5).to.be.equal(9)
-        /**/
+        const simCodes = ['1a','2B','3c','4D','5e','6F','7g']
+        const expected_keycodestring = '1a-2B-3c-4D-5e-6F-7g'
+        const vm = new Vue(licensecode).$mount()
+        let boxcount = 7
+        vm.draw_keycode_box(boxcount)
+        for(let index = 0; index < boxcount; index++){
+            vm.license_code[index].value = simCodes[index]
+        }
+        //console.log(vm.license_code)
+        console.log(vm.licensekeycode)
+        expect(vm.licensekeycode).to.be.equal(expected_keycodestring)
+    })
+
+    it("License Key Code Array is 3 length code object When Set Length is 3", () => {
+        console.log('mocha test license')
+        
+        const vm = new Vue(licensecode).$mount()
+        const expected_codes = [{'id':"keycode0", value:''}, {'id':"keycode1", value:''}, {'id':"keycode2", value:''}]
+        let boxcount = 3
+        vm.draw_keycode_box(boxcount)       
+        for(let index = 0; index < vm.license_code.length; index++){
+            expect(vm.license_code[index].id).to.be.equal(expected_codes[index].id)
+        }
     })
 
     afterEach(function() {

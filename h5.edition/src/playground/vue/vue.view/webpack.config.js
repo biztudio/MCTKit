@@ -3,7 +3,6 @@ var webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-    devtool: 'eval-source-map',
     entry:{
         app:'./src/entry.js',
         vendor:['vue']
