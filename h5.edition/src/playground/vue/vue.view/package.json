@@ -8,7 +8,7 @@
     "server": "webpack-dev-server --open",
     "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
     "mochatest": "",
-    "karmatest": "cross-env NODE_ENV=development karma start ./test/unit/karma.conf.js --colors  --single-run ",
+    "karmatest": "cross-env NODE_ENV=development BABEL_ENV=test karma start ./test/unit/karma.conf.js --colors  --log-level debug",
     "karmatestdev": "cross-env NODE_ENV=development karma start ./test/unit/karma.conf.js --colors",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
@@ -33,7 +33,6 @@
     "karma": "^1.7.1",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.1.1",
-    "karma-firefox-launcher": "^1.0.1",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-phantomjs-shim": "^1.5.0",

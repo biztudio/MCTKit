@@ -19,7 +19,7 @@ module.exports = function(config){
             　　            noInfo: true
             　　        },
 
-        //browsers: ['Firefox'],
+        //browsers: ['Phantomjs'],
 
         /*
         webpackMiddleware:{

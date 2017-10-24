@@ -1,5 +1,5 @@
 import assert from 'assert'
-import {expect} from "chai"
+import {expect, should} from "chai"
 import Vue from "vue"
 import licensecode from '../../../src/licensecode.vue'
 
@@ -13,22 +13,21 @@ describe('#license key code',function(){
 
     before(function() {
         // runs before all tests in this block
-        console.log('Mocha is testing...')
+        //console.log('Mocha is testing...')
       })
 
       beforeEach(function() {
         // runs before each test in this block
-        console.log('Mocha is testing on a case.')
+        //console.log('Mocha is testing on a case.')
       })  
 
     it('Macho is simple', function(){
-        console.log('mocha test is simple')
         assert.equal('1', '1')
     })
          
     //it means test case
     it("License Key Code is 1a-2B-3c-4D-5e-6F-7g when input license code box is ['1a','2B','3c','4D','5e','6F','7g']", () => {
-        console.log('mocha test license')
+        //console.log('mocha test license')
         
         const simCodes = ['1a','2B','3c','4D','5e','6F','7g']
         const expected_keycodestring = '1a-2B-3c-4D-5e-6F-7g'
@@ -39,12 +38,12 @@ describe('#license key code',function(){
             vm.license_code[index].value = simCodes[index]
         }
         //console.log(vm.license_code)
-        console.log(vm.licensekeycode)
+        //console.log(vm.licensekeycode)
         expect(vm.licensekeycode).to.be.equal(expected_keycodestring)
     })
 
     it("License Key Code Array is 3 length code object When Set Length is 3", () => {
-        console.log('mocha test license')
+        //console.log('mocha test license')
         
         const vm = new Vue(licensecode).$mount()
         const expected_codes = [{'id':"keycode0", value:''}, {'id':"keycode1", value:''}, {'id':"keycode2", value:''}]
@@ -57,11 +56,11 @@ describe('#license key code',function(){
 
     afterEach(function() {
         // runs after each test in this block
-        console.log('Mocha tested code in a case.')
+        //console.log('Mocha tested code in a case.')
       })
 
     after(function() {
         // runs after all tests in this block
-        console.log('Mocha tested all code.')
+        //console.log('Mocha tested all code.')
       })
 })
