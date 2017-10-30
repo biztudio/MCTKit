@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <title>数字方格生成器</title>
+        <link rel="shortcut icon" href="./favicon.ico" />
+        <link rel="stylesheet" href="./mctstyle.css" type="text/css" />
+    </head>
+
+    <body>
+        <div id='app'>
+            <input type="text" placeholder="最大行数" style="width:60px" />
+            <input type="text" placeholder="每行数字个数"  style="width:80px"/>
+            <input type="text" placeholder="创建组数"  style="width:60px"/>
+            <button @click="add_new_item">创建</button>
+            <button @click="add_new_item">打印</button>
+
+            <numbercolumn ></numbercolumn>
+
+        </div>
+        <!-- referred common lib, such as vue -->
+        <script src="./vendor.bundle.js" ></script>
+        <!-- js the app itself -->
+        <script src="./app.bundle.js" ></script>
+        
+    </body>    
+</html>
