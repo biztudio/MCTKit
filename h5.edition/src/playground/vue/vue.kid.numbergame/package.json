@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Yang SHEN",
@@ -17,6 +17,7 @@
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^0.1.17",
     "cross-env": "^5.1.1",
+    "css-loader": "^0.28.7",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
@@ -30,5 +31,20 @@
   },
   "dependencies": {
     "vue": "^2.5.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^vue$": "vue/dist/vue.common.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "collectCoverage": true,
+    "verbose": true,
+    "transform": {
+      "^.+\\.js$": "./node_modules/babel-jest",
+      ".*\\.(vue)$": "./node_modules/jest-vue-preprocessor"
+    }
   }
 }
