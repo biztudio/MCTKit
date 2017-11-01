@@ -15,7 +15,7 @@ export default {
     },
 
     created: function(){
-
+       this.draw_columns();
     },
 
     methods:{
@@ -23,7 +23,7 @@ export default {
         draw_columns:function(){
             let gl = this.group?this.group:0;
             let hl = this.height?this.height:0;
-            let wl = this.witdh?this.witdh:0;
+            let wl = this.width?this.width:0;
             this._number_columns = [];
             this._digit_pool = [1,2,3,4,5,6,7,8,9];
             for(let g = 0; g < gl; g++){
@@ -39,11 +39,12 @@ export default {
                 }
                 this._number_columns.push(column);
             }
+            console.log(this._number_columns)
         }
     },
 
-    prop:[
-        'witdh',
+    props:[
+        'width',
         'height',
         'group',
         'id'

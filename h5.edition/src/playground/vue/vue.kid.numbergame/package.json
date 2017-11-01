@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "debug": "cross-env NODE_ENV=development webpack --progress --colors --hide-modules"
   },
   "keywords": [],
   "author": "Yang SHEN",

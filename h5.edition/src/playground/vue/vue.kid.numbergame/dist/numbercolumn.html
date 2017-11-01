@@ -1,17 +1,18 @@
 <!doctype html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf8">
         <title>数字列生成器</title>
         <link rel="shortcut icon" href="./favicon.ico" />
         <link rel="stylesheet" href="./mctstyle.css" type="text/css" />
     </head>
 
     <body>
-        <div id='app'>
+        <div id='capp'>
             <input type="text" placeholder="最大行数" style="width:60px" />
             <input type="text" placeholder="每行数字个数"  style="width:80px"/>
             <input type="text" placeholder="创建组数"  style="width:60px"/>
-            <button @click="add_new_item">创建</button>
+            <button>创建</button>
 
             <numbercolumn id = 'mxmnc' group = '3' height = '10' width = '2' ></numbercolumn>
 
