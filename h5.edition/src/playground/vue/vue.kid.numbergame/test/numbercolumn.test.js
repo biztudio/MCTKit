@@ -11,11 +11,16 @@ describe('Test Component numbercolumn', ()=>{
     });
 
     test('Test Number Column Generator: description...', () => {
-        component_numbercolumn.group = 1;
-        component_numbercolumn.height = 3;
-        component_numbercolumn.width = 2;
+        component_numbercolumn.group = 3;
+        component_numbercolumn.height = 10;
+        component_numbercolumn.witdh = 2;
         component_numbercolumn.draw_columns();
-        //console.log(component_numbercolumn._columns)
-        expect(1).toBeLessThanOrEqual(8);
+        expect(component_numbercolumn._number_columns.length).toBe(component_numbercolumn.group);
+        expect(component_numbercolumn._number_columns[0].length).toBe(component_numbercolumn.height);
+        expect(component_numbercolumn._number_columns[0][0].length).toBe(component_numbercolumn.witdh);
+        for(let index = 0; index < component_numbercolumn.witdh; index++){
+            expect(component_numbercolumn._number_columns[0][0][index]).toBeLessThanOrEqual(9);
+        }
+        console.log(component_numbercolumn._number_columns)
     });
 });

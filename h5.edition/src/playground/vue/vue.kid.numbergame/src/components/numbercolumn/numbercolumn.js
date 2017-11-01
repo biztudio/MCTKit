@@ -9,8 +9,8 @@ import mathkit from './mathkit';
 export default {
     data(){
         return{
-            _columns:[],//3D array: digit count per row / rows count / count of columns     
-            _digit_pool:[1,2,3,4,5,6,7,8,9]      
+            _number_columns:[],//3D array: digit count per row / rows count / count of columns     
+            _digit_pool:[]      
         }
     },
 
@@ -24,19 +24,20 @@ export default {
             let gl = this.group?this.group:0;
             let hl = this.height?this.height:0;
             let wl = this.witdh?this.witdh:0;
+            this._number_columns = [];
+            this._digit_pool = [1,2,3,4,5,6,7,8,9];
             for(let g = 0; g < gl; g++){
                 let column = [];
                 for(let h = 0; h < hl; h++){
                     let row = [];
                     for(let w = 0; w < wl; w++){
                         let index = mathkit.get_random_number_index();
-                        let number = _digit_pool[index];
+                        let number = this._digit_pool[index];
                         row.push(number);
                     }
-                    console.log(row);
                     column.push(row);
                 }
-                //this._columns.push(column);
+                this._number_columns.push(column);
             }
         }
     },
