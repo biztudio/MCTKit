@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 export default{
     get_random_number_index: function(){
         let rs = Math.random() * 10

@@ -1,3 +1,11 @@
+/*
+    在 .js 檔案的上方 加入下如下comment便可以不再顯示Warning， 
+    形如： ‘let’ is available in ES6 (use ‘esversion: 6’) or Mozilla JS extensions (use moz).
+*/
+/*jshint esversion: 6 */
+import mathkit from './mathkit';
+
+
 export default {
     data(){
         return{
@@ -13,15 +21,22 @@ export default {
     methods:{
 
         draw_columns:function(){
-            let gl = this.group?this.group:0
-            let hl = this.height?this.height:0
-            let wl = this.witdh?this.witdh:0
+            let gl = this.group?this.group:0;
+            let hl = this.height?this.height:0;
+            let wl = this.witdh?this.witdh:0;
             for(let g = 0; g < gl; g++){
+                let column = [];
                 for(let h = 0; h < hl; h++){
+                    let row = [];
                     for(let w = 0; w < wl; w++){
-
+                        let index = mathkit.get_random_number_index();
+                        let number = _digit_pool[index];
+                        row.push(number);
                     }
+                    console.log(row);
+                    column.push(row);
                 }
+                //this._columns.push(column);
             }
         }
     },
