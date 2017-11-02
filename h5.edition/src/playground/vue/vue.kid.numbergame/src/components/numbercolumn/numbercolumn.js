@@ -36,6 +36,10 @@ export default {
             let gl = this.group?this.group:0;
             let hl = this.height?this.height:0;
             let wl = this.width?this.width:0;
+            if(gl > 10 || hl > 20 || wl > 10){
+                alert('参数设置超限！');
+                return;
+            }
             this._number_columns = [];
             this._digit_pool = [1,2,3,4,5,6,7,8,9];
             for(let g = 0; g < gl; g++){
