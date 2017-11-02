@@ -9,12 +9,12 @@
 
     <body>
         <div id='capp'>
-            <input type="text" placeholder="最大行数" style="width:60px" />
-            <input type="text" placeholder="每行数字个数"  style="width:80px"/>
-            <input type="text" placeholder="创建组数"  style="width:60px"/>
-            <button>创建</button>
-
-            <numbercolumn id = 'mxmnc' group = '3' height = '10' width = '2' ></numbercolumn>
+            组数:<input type="text" style="width:30px" v-model="group_model"/>
+            每组行数:<input type="text" style="width:30px" v-model="height_model"/>
+            每行数字个数:<input type="text" style="width:30px" v-model="width_model"/>
+            
+            <hr />
+            <numbercolumn id = 'mxmnc' :group='group_model' :height='height_model' :width='width_model' ></numbercolumn>
 
         </div>
         <!-- referred common lib, such as vue -->

@@ -17,6 +17,18 @@ export default {
     created: function(){
        this.draw_columns();
     },
+/**/
+    watch:{
+        group:function(){
+            this.draw_columns();
+        },
+        height:function(){
+            this.draw_columns();
+        },
+        width:function(){
+            this.draw_columns();
+        }
+    },
 
     methods:{
 
