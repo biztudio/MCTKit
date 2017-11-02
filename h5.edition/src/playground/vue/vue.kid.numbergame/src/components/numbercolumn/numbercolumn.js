@@ -10,7 +10,7 @@ export default {
     data(){
         return{
             _number_columns:[],//3D array: digit count per row / rows count / count of columns     
-            _digit_pool:[]      
+            _digit_pool:[]
         }
     },
 
@@ -40,6 +40,14 @@ export default {
                 alert('参数设置超限！');
                 return;
             }
+            let height_per_group = hl * 30;
+            let styleObject = {
+                color: '#000000',
+                fontWeight: 'bold',
+                fontSize: '30px',
+                marginTop:'10px',
+                position: 'absolute'
+            };
             this._number_columns = [];
             this._digit_pool = [1,2,3,4,5,6,7,8,9];
             for(let g = 0; g < gl; g++){
@@ -53,7 +61,7 @@ export default {
                     }
                     column.push(row);
                 }
-                this._number_columns.push(column);
+                this._number_columns.push({data:column, style_config: styleObject});
             }
             //console.log(this._number_columns)
         }
