@@ -356,3 +356,6 @@ package-lock.json
 /h5.edition/src/playground/vue/vue.view/dist/app.bundle.js
 /h5.edition/src/playground/vue/vue.view/dist/vendor.bundle.js
 /h5.edition/src/playground/vue/vue.view/mochawesome-report
+/h5.edition/src/playground/vue/vue.kid.numbergame/*.lock
+h5.edition/src/playground/vue/vue.kid.numbergame/dist/app.bundle.js
+/h5.edition/src/playground/vue/vue.kid.numbergame/dist/*.js

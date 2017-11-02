@@ -39,7 +39,7 @@ export default {
                 }
                 this._number_columns.push(column);
             }
-            console.log(this._number_columns)
+            //console.log(this._number_columns)
         }
     },
 

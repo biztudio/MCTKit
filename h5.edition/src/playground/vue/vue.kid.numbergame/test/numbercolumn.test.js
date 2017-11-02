@@ -10,17 +10,23 @@ describe('Test Component numbercolumn', ()=>{
         component_numbercolumn = shallow(numbercolumn).vm;
     });
 
-    test('Test Number Column Generator: description...', () => {
+    test('Test Number Column Generator: Length', () => {
         component_numbercolumn.group = 3;
         component_numbercolumn.height = 10;
-        component_numbercolumn.witdh = 2;
+        component_numbercolumn.width = 2;
         component_numbercolumn.draw_columns();
         expect(component_numbercolumn._number_columns.length).toBe(component_numbercolumn.group);
         expect(component_numbercolumn._number_columns[0].length).toBe(component_numbercolumn.height);
-        expect(component_numbercolumn._number_columns[0][0].length).toBe(component_numbercolumn.witdh);
+        expect(component_numbercolumn._number_columns[0][0].length).toBe(component_numbercolumn.width);
+    });
+
+    test('Test Number Column Generator: Value', () => {
+        component_numbercolumn.group = 3;
+        component_numbercolumn.height = 10;
+        component_numbercolumn.width = 2;
+        component_numbercolumn.draw_columns();
         for(let index = 0; index < component_numbercolumn.witdh; index++){
             expect(component_numbercolumn._number_columns[0][0][index]).toBeLessThanOrEqual(9);
         }
-        console.log(component_numbercolumn._number_columns)
     });
 });
