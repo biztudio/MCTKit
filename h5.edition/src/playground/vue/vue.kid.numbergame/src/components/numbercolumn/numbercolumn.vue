@@ -1,7 +1,7 @@
 <template>
   <div :id='id'>
     <div style="display:none">{{group}}.{{height}}.{{width}}</div>
-    <div v-for='(g, gi) in _number_columns' :style="g.style_config">
+    <div v-for='(g, gi) in _number_columns' :style="g.style_config" draggable="true" class="columngroup">
       <table>
         <thead>
           <tr>
@@ -15,8 +15,14 @@
     </div>
   </div>    
 </template>
-<<style>
+<style>
+[draggable=true] {
+    cursor: move;
+}
 
+.columngroup {
+    max-width: 300px;
+}
 </style>
 
 <script src='./numbercolumn.js'></script>

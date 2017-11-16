@@ -14,8 +14,14 @@ export default {
         }
     },
 
+      
     created: function(){
        this.draw_columns();
+    },
+  /**/
+
+    mount: function(){
+        this.draw_columns();
     },
 /**/
     watch:{
@@ -45,8 +51,8 @@ export default {
                 color: '#000000',
                 fontWeight: 'bold',
                 fontSize: '30px',
-                marginTop:'10px',
-                position: 'absolute'
+                //marginTop:'10px',
+                //position: 'absolute'
             };
             this._number_columns = [];
             this._digit_pool = [1,2,3,4,5,6,7,8,9];
