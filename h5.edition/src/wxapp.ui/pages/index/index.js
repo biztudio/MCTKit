@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'Hello Geekchase',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -16,6 +16,7 @@ Page({
     })
   },
   onLoad: function () {
+    let index = 0
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
