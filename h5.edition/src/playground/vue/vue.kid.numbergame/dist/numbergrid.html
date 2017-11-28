@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=utf8">
-        <title>数字列生成器</title>
+        <title>舒尔特方格生成器</title>
         <link rel="shortcut icon" href="./favicon.ico" />
         <!--<link rel="stylesheet" href="./mctstyle.css" type="text/css" />-->
         <link rel="stylesheet" href="./docs.min.css" type="text/css" />
@@ -23,11 +23,10 @@
     <body>
         <div id='capp'>
             组数:<input type="text" style="width:30px" v-model="group_model"/>
-            每组行数:<input type="text" style="width:30px" v-model="height_model"/>
-            每行数字个数:<input type="text" style="width:30px" v-model="width_model"/>
-            
+            方格级别:<input type="text" style="width:30px" placeholder="1~10" v-model="gridlevel_model"/>
+            <a target="blank" href='https://baike.baidu.com/item/%E8%88%92%E5%B0%94%E7%89%B9%E6%96%B9%E6%A0%BC/5372437?fr=aladdin'>关于舒尔特方格</a>
             <hr />
-            <numbercolumn id = 'mxmnc' :group='group_model' :height='height_model' :width='width_model' ></numbercolumn>
+            <numbergrid id = 'mxmnc' :group='group_model' :grid_level='gridlevel_model' ></numbergrid>
 
         </div>
 

@@ -3,7 +3,7 @@
     形如： ‘let’ is available in ES6 (use ‘esversion: 6’) or Mozilla JS extensions (use moz).
 */
 /*jshint esversion: 6 */
-import mathkit from './mathkit';
+import mathkit from '../common/mathkit';
 
 
 export default {
