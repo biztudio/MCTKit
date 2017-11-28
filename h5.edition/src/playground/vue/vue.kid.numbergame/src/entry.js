@@ -7,9 +7,9 @@ Vue.component('numbercolumn', numbercolumn);
 var capp = new Vue({
     el:"#capp",
     data:{
-        group_model:6,
+        group_model:1,
         height_model:10,
-        width_model:2
+        width_model:3
     },
     methods:{
         add_new_todoitem:function(){

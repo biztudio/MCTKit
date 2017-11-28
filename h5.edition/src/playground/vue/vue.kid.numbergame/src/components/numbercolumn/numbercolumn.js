@@ -56,16 +56,22 @@ export default {
             };
             this._number_columns = [];
             this._digit_pool = [1,2,3,4,5,6,7,8,9];
+            let temp_pool = this._digit_pool.slice(0);
             for(let g = 0; g < gl; g++){
                 let column = [];
                 for(let h = 0; h < hl; h++){
                     let row = [];
                     for(let w = 0; w < wl; w++){
-                        let index = mathkit.get_random_number_index();
-                        let number = this._digit_pool[index];
+                        let index = mathkit.get_random_number_index(temp_pool.length);
+                        let number = temp_pool[index];
                         row.push(number);
+                        temp_pool.splice(index, 1);
+                        if(!temp_pool || temp_pool.length <= 0){
+                            temp_pool = this._digit_pool.slice(0);
+                        }
                     }
                     column.push(row);
+                    temp_pool = this._digit_pool.slice(0);
                 }
                 this._number_columns.push({data:column, style_config: styleObject});
             }
