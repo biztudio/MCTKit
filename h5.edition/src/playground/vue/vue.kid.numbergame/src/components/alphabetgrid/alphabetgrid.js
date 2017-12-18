@@ -33,12 +33,9 @@ export default {
             let gp = this.group?this.group:1;
             if(gp <=0 ) return;
             let to_upper = (this.case_mode == 1);//1: to upper case / 2. to lower case
-            this._grids = [];
-            let styleObject = {
-                color: '#000000',
-                fontWeight: 'bold',
-                fontSize: '20px'
-            };
+            this._grids = [];           
+            let top_pos = 30;
+            let left_pos = 30;
             for(let g = 0; g < gp; g++){
                 let grid = [];
                 let alphabet_list = alphabetkit.get_letter_list_random(to_upper);
@@ -55,6 +52,16 @@ export default {
                     }  
                     grid.push(row);                  
                 }
+                let top =  (top_pos + 300 * parseInt(g/4));
+                let left =  (left_pos + 360 * ((g)%4));
+                let styleObject = {
+                    color: '#000000',
+                    fontWeight: 'bold',
+                    fontSize: '25px',
+                    position:'absolute',
+                    top:( top + 'px'),
+                    left:(left + 'px')
+                };
                 this._grids.push({data:grid, style_config: styleObject});
             }
         }

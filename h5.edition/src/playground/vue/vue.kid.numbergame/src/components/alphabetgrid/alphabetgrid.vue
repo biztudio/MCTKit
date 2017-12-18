@@ -1,7 +1,9 @@
 <template>
   <div :id='id'>
     <div style="display:none">{{group}}.{{case_mode}}</div>
-    <div v-for='(g, gi) in _grids' :style="g.style_config" draggable="true" class="columngroup">
+
+    <div v-for='(g, gi) in _grids' :style="g.style_config" draggable="true" >
+
       <table class="grid_container">
         <thead>
           <tr>
@@ -14,7 +16,9 @@
             </td>
         </tr>
       </table>
+
     </div>
+
   </div>    
 </template>
 <style>
@@ -30,9 +34,6 @@
     border:solid#000 1px;
 }
 
-.columngroup {
-    max-width: 500px;
-}
 </style>
 
 <script src='./alphabetgrid.js'></script>

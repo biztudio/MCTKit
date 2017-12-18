@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="./docs.min.css" type="text/css" />
         <!-- import stylesheet -->
         <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+        <style media=print type="text/css">  
+            .noprint{visibility:hidden}  
+        </style>   
         <style>
                 .divtitle
                 {
@@ -23,18 +26,21 @@
 
     <body>
         <div id='capp'>
-            Group: 
-            <Input v-model="group_model" icon="ios-clock-outline" placeholder="How many alphabet group" style="width: 150px"></Input>
-            <Select v-model="case_mode_model" filterable>
-                <Option v-for="item in case_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
-            </Select>
-            <a target="blank" href='https://en.wikipedia.org/wiki/Schulte_table'>About Schulte Grid</a>
-            <hr />
-            <div style="position:relative; left: 30px;">
+            <div class="noprint">
+                Group: 
+                <Input v-model="group_model" icon="ios-clock-outline" placeholder="How many alphabet group" style="width: 150px"></Input>
+                <Select v-model="case_mode_model" filterable>
+                    <Option v-for="item in case_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                <a target="blank" href='https://en.wikipedia.org/wiki/Schulte_table'>About Schulte Grid</a>
+                <hr />
+            </div>
+            <div>
                 <alphabetgrid id = 'mxmnc' :group='group_model' :case_mode='case_mode_model'></alphabetgrid>
             </div>    
         </div>
 
+        <!--
         <footer  class="bs-docs-footer footerStyle">	
                 <div class="container">
                     <hr />
@@ -46,7 +52,8 @@
                     </ul>
                 </div>	
           </footer>
-        <!-- referred common lib, such as vue -->
+        -->
+          <!-- referred common lib, such as vue -->
         <script src="./vendor.bundle.js" ></script>
         <!-- js the app itself -->
         <script src="./app.bundle.js" ></script>

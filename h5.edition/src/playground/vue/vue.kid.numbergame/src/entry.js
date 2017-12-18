@@ -4,11 +4,8 @@ import numbercolumn from './components/numbercolumn/numbercolumn.vue';
 import numbergrid from './components/numbergrid/numbergrid.vue';
 import alphabetgrid from './components/alphabetgrid/alphabetgrid.vue';
 import {Input} from 'iview';
-//import iView from 'iview'; 
 
 Vue.component('Input', Input);
-//Vue.component('iSwitch', iST);
-//Vue.use(iView);
 Vue.component('numbergrid', numbergrid);
 Vue.component('numbercolumn', numbercolumn);
 Vue.component('alphabetgrid', alphabetgrid);
