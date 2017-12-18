@@ -32,6 +32,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
+    "iview": "^2.7.4",
     "vue": "^2.5.2"
   },
   "jest": {

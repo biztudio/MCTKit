@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
     entry:{
         app:'./src/entry.js',
-        vendor:['vue']
+        vendor:['vue','iview']
     },
     output:{
         path: path.resolve(__dirname, './dist'),
@@ -38,7 +38,12 @@ module.exports = {
         new CleanWebpackPlugin(
             ['dist/*.bundle.js.map', 'dist/*.bundle.js'],　 //delete mapped file
             { root: __dirname, verbose: true, dry: false}
-        )
+        ),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ["app", "vendor"],
+            minChunks: 2
+        })
     ],
     
     //for webpack-dev-server config

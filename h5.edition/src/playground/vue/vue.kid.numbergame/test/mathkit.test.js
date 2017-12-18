@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import mathkit from '../src/components/numbercolumn/mathkit';
+import mathkit from '../src/components/common/mathkit';
 
 describe('Test Math Kit', () =>{
     test('Test Random Index', () => {
