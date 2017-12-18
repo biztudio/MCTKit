@@ -4,8 +4,9 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf8">
         <title>Alphabet Shult Grid</title>
         <link rel="shortcut icon" href="./favicon.ico" />
-        <!--<link rel="stylesheet" href="./mctstyle.css" type="text/css" />-->
         <link rel="stylesheet" href="./docs.min.css" type="text/css" />
+        <!-- import stylesheet -->
+        <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
         <style>
                 .divtitle
                 {
@@ -22,11 +23,16 @@
 
     <body>
         <div id='capp'>
-            Group:<input type="text" style="width:30px" v-model="group_model"/>
-            <a target="blank" href='https://baike.baidu.com/item/%E8%88%92%E5%B0%94%E7%89%B9%E6%96%B9%E6%A0%BC/5372437?fr=aladdin'>About Shult Grid</a>
+            Group: 
+            <Input v-model="group_model" icon="ios-clock-outline" placeholder="How many alphabet group" style="width: 150px"></Input>
+            <Select v-model="case_mode_model" filterable>
+                <Option v-for="item in case_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+            <a target="blank" href='https://en.wikipedia.org/wiki/Schulte_table'>About Schulte Grid</a>
             <hr />
-            <alphabetgrid id = 'mxmnc' :group='group_model'></alphabetgrid>
-
+            <div style="position:relative; left: 30px;">
+                <alphabetgrid id = 'mxmnc' :group='group_model' :case_mode='case_mode_model'></alphabetgrid>
+            </div>    
         </div>
 
         <footer  class="bs-docs-footer footerStyle">	

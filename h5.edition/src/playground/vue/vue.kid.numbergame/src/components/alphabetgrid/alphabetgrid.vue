@@ -1,6 +1,6 @@
 <template>
   <div :id='id'>
-    <div style="display:none">{{group}}.{{grid_level}}</div>
+    <div style="display:none">{{group}}.{{case_mode}}</div>
     <div v-for='(g, gi) in _grids' :style="g.style_config" draggable="true" class="columngroup">
       <table class="grid_container">
         <thead>
