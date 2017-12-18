@@ -27,6 +27,10 @@ var capp = new Vue({
                 value: '0',
                 label: 'Lower Case'
             },
+            {
+                value: '2',
+                label: 'Number'
+            }
         ]
     },
     methods:{
