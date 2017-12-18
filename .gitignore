@@ -359,4 +359,5 @@ package-lock.json
 /h5.edition/src/playground/vue/vue.kid.numbergame/*.lock
 h5.edition/src/playground/vue/vue.kid.numbergame/dist/app.bundle.js
 /h5.edition/src/playground/vue/vue.kid.numbergame/dist/*.js
-/.vscode
+/.vscode/
+.vscode/
