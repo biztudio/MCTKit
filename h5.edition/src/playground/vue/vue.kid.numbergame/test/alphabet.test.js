@@ -21,14 +21,12 @@ describe('Test Alphabet Kit', ()=>{
         let source_list =  (alphabetkit.get_letter_list());
         let randowm_list = (alphabetkit.get_letter_list_random());
         expect(new Set(source_list).length).toBe(new Set(randowm_list).length);
-        console.log(randowm_list.join(''))
     });
 
     test('Test Alphabet random upper array as expected', () => {
         let source_list =  (alphabetkit.get_letter_list(true));
         let randowm_list = (alphabetkit.get_letter_list_random(true));
         expect(new Set(source_list).length).toBe(new Set(randowm_list).length);
-        console.log(randowm_list.join(''))
     });
 
 });
