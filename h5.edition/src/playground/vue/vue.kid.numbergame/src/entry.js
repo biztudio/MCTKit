@@ -3,7 +3,7 @@ import Vue from 'vue';
 import numbercolumn from './components/numbercolumn/numbercolumn.vue';
 import numbergrid from './components/numbergrid/numbergrid.vue';
 import alphabetgrid from './components/alphabetgrid/alphabetgrid.vue';
-import {Input} from 'iview';
+import {Input } from 'iview';
 
 Vue.component('Input', Input);
 Vue.component('numbergrid', numbergrid);
@@ -31,6 +31,11 @@ var capp = new Vue({
                 value: '2',
                 label: 'Number'
             }
+        ],
+        group_aln_list:[
+            {value: '1', label: '1 group'},{value: '2', label: '2 groups'}
+            ,{value: '3', label: '3 groups'},{value: '4', label: '4 groups'},{value: '5', label: '5 groups'},{value: '6', label: '6 groups'}
+            ,{value: '7', label: '7 groups'},{value: '8', label: '8 groups'}
         ]
     },
     methods:{

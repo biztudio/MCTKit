@@ -27,8 +27,11 @@
     <body>
         <div id='capp'>
             <div class="noprint">
-                Group: 
-                <Input v-model="group_model" icon="ios-clock-outline" placeholder="How many alphabet group" style="width: 150px"></Input>
+                Group:  
+                <Select v-model="group_model" filterable>
+                    <Option v-for="item in group_aln_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+                Mode: 
                 <Select v-model="case_mode_model" filterable>
                     <Option v-for="item in case_list" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
