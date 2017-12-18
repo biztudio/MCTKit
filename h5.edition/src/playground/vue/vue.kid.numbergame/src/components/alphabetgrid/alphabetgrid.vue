@@ -2,7 +2,7 @@
   <div :id='id'>
     <div style="display:none">{{group}}.{{case_mode}}</div>
 
-    <div v-for='(g, gi) in _grids' :style="g.style_config" draggable="true" >
+    <div v-for='(g, gi) in _grids' :style="g.style_config" draggable="true">
 
       <table class="grid_container">
         <thead>
@@ -12,11 +12,12 @@
         </thead>
         <tr v-for='(h, i) in g.data'>
             <td v-for="(r, i) in h" style="border:solid#000 1px;">
-              <div style="width:50px;height:50px;text-align:center;position:relative;top:15px;">{{r}}</div>
+              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;">{{r}}</div>
             </td>
         </tr>
       </table>
 
+      <span style="font-size:15px;">Time(s):<input type="text" class="time_score"/></span>
     </div>
 
   </div>    
@@ -32,6 +33,17 @@
 
 .grid_cell{
     border:solid#000 1px;
+}
+
+.time_score{
+  border-color: #878787;
+  border-style: solid;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  font-size: 15px;
+  width: 100px
 }
 
 </style>

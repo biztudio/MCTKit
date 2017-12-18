@@ -35,7 +35,7 @@ export default {
             let to_upper = (this.case_mode == 1);//1: to upper case / 2. to lower case
             this._grids = [];           
             let top_pos = 30;
-            let left_pos = 30;
+            let left_pos = 10;
             for(let g = 0; g < gp; g++){
                 let grid = [];
                 let alphabet_list = alphabetkit.get_letter_list_random(to_upper);
@@ -52,12 +52,12 @@ export default {
                     }  
                     grid.push(row);                  
                 }
-                let top =  (top_pos + 300 * parseInt(g/4));
+                let top =  (top_pos + 400 * parseInt(g/4));
                 let left =  (left_pos + 360 * ((g)%4));
                 let styleObject = {
                     color: '#000000',
                     fontWeight: 'bold',
-                    fontSize: '25px',
+                    fontSize: '30px',
                     position:'absolute',
                     top:( top + 'px'),
                     left:(left + 'px')
