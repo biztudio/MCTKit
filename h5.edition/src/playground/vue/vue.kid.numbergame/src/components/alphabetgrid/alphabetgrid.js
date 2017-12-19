@@ -31,6 +31,7 @@ export default {
         draw_grid:function(){
             let gp = this.group?this.group:1;
             let number_grid_case = (this.case_mode == 2);
+            let mixed_grid_case = (this.case_mode == 3);
             let x_axis_length = number_grid_case?5:6;
             let y_axis_length = 5;
             let to_upper = (this.case_mode == 1);
@@ -63,6 +64,18 @@ export default {
                     for(let x_axis_index = 0; x_axis_index < x_axis_length; x_axis_index++){
                         if(grid_cell_value_list.length > 0){
                             let letter = grid_cell_value_list.pop();
+                            if(mixed_grid_case){
+                                let lucky_index = mathkit.get_random_number_index(x_axis_length);
+                                if (lucky_index == x_axis_index || 
+                                    (g == lucky_index && x_axis_index == 0) ||
+                                    (g%(lucky_index + 1) == x_axis_index && g*lucky_index*x_axis_index > 0) ||
+                                    (g%(lucky_index + 1) == y_axis_index && g*lucky_index*y_axis_index > 0) 
+                                ){
+                                        if( letter != 'i'/*since 'I' looks same as 'l' in case*/){
+                                            letter = letter.toUpperCase();
+                                    }
+                                }
+                            }
                             row.push(letter);
                         }
                         else{
