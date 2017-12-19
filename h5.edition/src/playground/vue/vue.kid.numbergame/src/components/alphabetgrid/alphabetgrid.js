@@ -29,15 +29,16 @@ export default {
 
     methods:{
         draw_grid:function(){
-            let gp = this.group?this.group:1;
             let number_grid_case = (this.case_mode == 2);
             let mixed_grid_case = (this.case_mode == 3);
+            let study_grid_case = (this.case_mode == 4);
+            let gp = study_grid_case?3:(this.group?this.group:1);
             let x_axis_length = number_grid_case?5:6;
             let y_axis_length = 5;
             let to_upper = (this.case_mode == 1);
             let grid_cell_value_list = [];
             let digit_pool = [];
-            if(number_grid_case){
+            if(number_grid_case || study_grid_case){
                 for(let i = 1; i <= x_axis_length * y_axis_length; i++){
                     digit_pool.push(i);
                 }
@@ -54,6 +55,17 @@ export default {
                         let number = temp_pool[index];
                         grid_cell_value_list.push(number);
                         temp_pool.splice(index, 1);
+                    }
+                }
+                else if(study_grid_case){
+                    if(g == 0){
+                        grid_cell_value_list = alphabetkit.get_letter_list().reverse();
+                    }
+                    else if(g == 1){
+                        grid_cell_value_list = alphabetkit.get_letter_list(true).reverse();
+                    }
+                    else{
+                        grid_cell_value_list = digit_pool.slice(0).reverse();
                     }
                 }
                 else{

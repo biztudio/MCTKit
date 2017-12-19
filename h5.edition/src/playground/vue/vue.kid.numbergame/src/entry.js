@@ -30,11 +30,15 @@ var capp = new Vue({
             },
             {
                 value: '3',
-                label: 'Mixed Case'
+                label: 'Mixed Mode'
+            },
+            {
+                value: '4',
+                label: 'Study Mode'
             },
             {
                 value: '2',
-                label: 'Number'
+                label: 'Number Mode'
             }
         ],
         group_aln_list:[
