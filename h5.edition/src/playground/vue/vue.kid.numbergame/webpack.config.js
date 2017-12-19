@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
     entry:{
         app:'./src/entry.js',
-        vendor:['vue','iview']
+        vendor:['vue','iview','babel-polyfill']
     },
     output:{
         path: path.resolve(__dirname, './dist'),

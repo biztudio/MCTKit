@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 import Vue from 'vue';
+import 'babel-polyfill';
 import numbercolumn from './components/numbercolumn/numbercolumn.vue';
 import numbergrid from './components/numbergrid/numbergrid.vue';
 import alphabetgrid from './components/alphabetgrid/alphabetgrid.vue';
