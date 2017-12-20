@@ -57,16 +57,9 @@ export default {
                         temp_pool.splice(index, 1);
                     }
                 }
-                else if(study_grid_case){
-                    if(g == 0){
-                        grid_cell_value_list = alphabetkit.get_letter_list().reverse();
-                    }
-                    else if(g == 1){
-                        grid_cell_value_list = alphabetkit.get_letter_list(true).reverse();
-                    }
-                    else{
-                        grid_cell_value_list = digit_pool.slice(0).reverse();
-                    }
+                else if(study_grid_case){                    
+                    grid_cell_value_list = (g < 2)?alphabetkit.get_letter_list(g == 1):digit_pool.slice(0);
+                    grid_cell_value_list.reverse();
                 }
                 else{
                     grid_cell_value_list = alphabetkit.get_letter_list_random(to_upper);

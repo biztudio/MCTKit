@@ -15,7 +15,7 @@ describe('Test Component Alphabet grid', ()=>{
         component_alphabetgrid.case_mode = 1;
         component_alphabetgrid.draw_grid();
 
-        console.log(component_alphabetgrid._grids);
+        //console.log(component_alphabetgrid._grids);
         expect(1).toBe(1);
     });
 });
