@@ -74,11 +74,10 @@ export default {
                                 if (lucky_index == x_axis_index || 
                                     (g == lucky_index && x_axis_index == 0) ||
                                     (g%(lucky_index + 1) == x_axis_index && g*lucky_index*x_axis_index > 0) ||
-                                    (g%(lucky_index + 1) == y_axis_index && g*lucky_index*y_axis_index > 0) 
-                                ){
+                                    (g%(lucky_index + 1) == y_axis_index && g*lucky_index*y_axis_index > 0) ){
                                         if( letter != 'i'/*since 'I' looks same as 'l' in case*/){
                                             letter = letter.toUpperCase();
-                                    }
+                                        }
                                 }
                             }
                             row.push(letter);
