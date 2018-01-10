@@ -21,7 +21,7 @@
         backgroundTextStyle: 'dark',
         backgroundColor: '#efefef',
         navigationBarBackgroundColor: '#ffffff',
-        navigationBarTitleText: 'MCTKit',
+        navigationBarTitleText: '小苗专注训练',
         navigationBarTextStyle: 'black'
       },
       networkTimeout: {
