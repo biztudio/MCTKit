@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import mk from './'
+
 export default {
 }
 </script>
