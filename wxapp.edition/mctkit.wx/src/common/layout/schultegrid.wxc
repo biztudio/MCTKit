@@ -1,5 +1,8 @@
 <template>
 
+<view>
+    
+</view>    
 
 <view class="section">
   <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" lang="zh_CN"
