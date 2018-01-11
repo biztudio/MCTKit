@@ -1,7 +1,9 @@
 <template>
 
 <view>
-    
+
+
+
 </view>    
 
 <view class="section">
@@ -22,6 +24,8 @@
 <script>
 import mathkit from '../lib/mathkit.js'
 
+
+
 export default {
 
  config: {
@@ -34,35 +38,37 @@ export default {
      $toast: {
             show: false
         },
-     grid:[],
-     score:0,
+     cell_value_list:[],
+     score_second:0,
      score_message:'',
      btnname_start:'开练',
      btnname_complete:'完成'
  },    
- 
+
  methods:{
     addnewpractise:function(event){
          let x_axis_length = 5
          let y_axis_length = 5
-         let grid_cell_value_list = []
+         let value_list = []
          let digit_pool = []
          for(let i = 1; i <= x_axis_length * y_axis_length; i++){ digit_pool.push(i); }
          let temp_pool = digit_pool.slice(0)
          for(let i = 0; i < digit_pool.length; i++){
                         let index = mathkit.get_random_number_index(temp_pool.length);
                         let number = temp_pool[index];
-                        grid_cell_value_list.push(number);
+                        value_list.push(number);
                         temp_pool.splice(index, 1);
                     }
-         //console.log(grid_cell_value_list)
+         //console.log(value_list)
 
-
+         this.setData({score_second:0})
+       
     },
 
     completepractise:function(event){
-       this.setData({score:10})  
-       let message = '恭喜完成，用时 ' + (this.data.score) + ' 秒'
+      
+       let message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
+       this.setData({score_second:0})
        this.setData({score_message:message}) 
        this.setData({
                     $toast: {
@@ -72,10 +78,10 @@ export default {
 
         setTimeout(() => {
                     this.setData({
-                    $toast: {
-                        show: false
-                    }
-                    })
+                        $toast: {
+                            show: false
+                        }
+                        })
                 }, 3000)
     }
   }
