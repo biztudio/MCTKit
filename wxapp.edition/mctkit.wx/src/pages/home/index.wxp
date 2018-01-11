@@ -21,7 +21,7 @@ export default {
 
   onShow:function(){
         // 页面显示
-          console.log('Hi')
+          console.log("Let's practise now.")
         },
 
   methods:{

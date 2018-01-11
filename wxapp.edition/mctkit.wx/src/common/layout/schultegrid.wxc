@@ -3,10 +3,10 @@
 
 <view class="section">
   <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" lang="zh_CN"
-        disabled="{{disabled}}" bindtap="addnewpractise" hover-class="other-button-hover"> 开练 </button>
+        disabled="{{disabled}}" bindtap="addnewpractise" hover-class="other-button-hover">{{btnname_start}}</button>
 
-   <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="completepractise"> 完成 </button>      
+   <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" lang="zh_CN"
+        disabled="{{disabled}}" bindtap="completepractise">{{btnname_complete}}</button>      
 </view>
 
 <wxc-toast
@@ -33,7 +33,9 @@ export default {
         },
      grid:[],
      score:0,
-     score_message:''
+     score_message:'',
+     btnname_start:'开练',
+     btnname_complete:'完成'
  },    
  
  methods:{
