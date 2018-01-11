@@ -1,6 +1,6 @@
 <template>
   <view class="foot">
-    <image class="foot-icon" src="https://biztudio.github.io/images/4ta/idea_2018.net.png"></image>
+    <image class="foot-icon" src="../../image/idea_2018.net.png"></image>
     <text class="foot-text">{{foottext}}</text>
   </view>
 </template>

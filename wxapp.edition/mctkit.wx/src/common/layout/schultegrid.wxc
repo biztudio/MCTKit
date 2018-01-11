@@ -57,6 +57,7 @@ export default {
                     }
          //console.log(grid_cell_value_list)
 
+
     },
 
     completepractise:function(event){
