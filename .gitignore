@@ -362,3 +362,4 @@ h5.edition/src/playground/vue/vue.kid.numbergame/dist/app.bundle.js
 /.vscode/
 .vscode/
 /wxapp.edition/mctkit.wx/dist
+/wxapp.edition/mctkit.wx/yarn.lock
