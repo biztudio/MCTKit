@@ -51,7 +51,7 @@ export default {
                         temp_pool.splice(index, 1);
                     }
          //console.log(grid_cell_value_list)
-                    
+
     },
 
     completepractise:function(event){
@@ -72,16 +72,6 @@ export default {
                     })
                 }, 3000)
     }
-  },
-
- config: {
-    usingComponents: {
-     
-    }
-  },
-
-  data:{
-  
   }
 }
 </script>
