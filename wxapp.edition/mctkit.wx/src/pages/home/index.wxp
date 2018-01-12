@@ -20,8 +20,8 @@ export default {
   },
 
   onShow:function(){
-        // 页面显示
-          console.log("Let's practise now.")
+          // 页面显示
+          // console.log("Let's practise now.")
         },
 
   methods:{

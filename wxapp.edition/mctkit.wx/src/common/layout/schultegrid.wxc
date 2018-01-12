@@ -17,8 +17,6 @@ TYU
 <wxc-toast
     is-show="{{$toast.show}}"
     text="{{score_message}}"
-    icon="yes"
-    icon-color="#ff5777"
     ></wxc-toast>
 </template>
 <script>
@@ -33,9 +31,7 @@ export default {
     },
         
  data:{
-     $toast: {
-            show: false
-        },
+     $toast: { show: false },
      cell_value_list:[],
      score_second:0,
      score_message:'',
@@ -43,10 +39,24 @@ export default {
      btnname_complete:'完成',
      disabled_btnstart:false,
      disabled_btncomplete:false,
+     max_time_seconds:600,
      timerid:0
  },   
 
  methods:{
+    resetstartbutton:function(){
+        clearInterval(this.data.timerid) 
+        this.setData({score_second:0})
+        this.setData({disabled_btnstart:false})
+        this.setData({btnname_start:'开练'})
+    },
+
+    showtoastinfo:function(message, show_seconds){
+        this.setData({score_message:message}) 
+        this.setData({ $toast: { show: true } })
+        setTimeout(() => { this.setData({ $toast: { show: false }}) }, show_seconds)
+    },
+
     addnewpractise:function(event){
          let x_axis_length = 5
          let y_axis_length = 5
@@ -62,28 +72,30 @@ export default {
          }
     
          this.setData({score_second:0})
-         this.setData({disabled_btnstart:true})
+         this.setData({disabled_btnstart:true})          
          this.setData({timerid:setInterval(()=>{
              let currentsecond = this.data.score_second + 1
              this.setData({score_second:currentsecond})
              this.setData({btnname_start:'训练计时中: ' + currentsecond + ' 秒'})
-
-             if(currentsecond > 1000){
-                  clearInterval(this.data.timerid)
+              
+             if(currentsecond > this.data.max_time_seconds){
+                  this.resetstartbutton()
+                  let message = '用时过长!\n请认真重新再来一次，谢谢.'
+                  this.showtoastinfo(message, 5000)
              }
          }, 1000)})
-         //console.log(timer)
     },
 
     completepractise:function(event){
-       let message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
-       this.setData({disabled_btnstart:false})
-       this.setData({btnname_start:'开练'})
-       clearInterval(this.data.timerid)
-       this.setData({score_second:0})
-       this.setData({score_message:message}) 
-       this.setData({ $toast: { show: true } })
-       setTimeout(() => { this.setData({ $toast: { show: false }}) }, 3000)
+       let message = ''
+       
+       if(this.data.score_second > 0){
+            message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
+            this.resetstartbutton()
+            this.showtoastinfo(message, 3000)
+            return
+       }
+       this.resetstartbutton()
     }
   }
 }
