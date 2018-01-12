@@ -49,7 +49,7 @@ export default {
   data:{
     tabs:[
       {title:'舒尔特方格', content:''},
-      {title:'训练指南', content:''},
+      {title:'指南', content:''},
       {title:'设置', content:'施工中...'}
     ]
   }

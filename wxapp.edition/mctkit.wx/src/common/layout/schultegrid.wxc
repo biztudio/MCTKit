@@ -1,9 +1,13 @@
 <template>
 
 <view>
-TYU
+    <wxc-flex class="wrap" wrap="{{wrap}}">
 
+        <view class="item" wx:for="{{cell_value_list}}" wx:key="idx" wx:for-item="item">
+          {{item}}
+        </view>
 
+    </wxc-flex>
 </view>    
 
 <view class="section">
@@ -26,11 +30,13 @@ export default {
 
  config: {
         usingComponents: {
+            'wxc-flex': '@minui/wxc-flex',
             'wxc-toast':'@minui/wxc-toast'
         }
     },
         
  data:{
+     wrap: 'wrap',
      $toast: { show: false },
      cell_value_list:[],
      score_second:0,
@@ -57,6 +63,12 @@ export default {
         setTimeout(() => { this.setData({ $toast: { show: false }}) }, show_seconds)
     },
 
+    setWrapToWrap: function () {
+      this.setData({
+        wrap: 'wrap'
+      })
+    },
+
     addnewpractise:function(event){
          let x_axis_length = 5
          let y_axis_length = 5
@@ -70,7 +82,7 @@ export default {
                         value_list.push(number);
                         temp_pool.splice(index, 1);
          }
-    
+         this.setData({cell_value_list:value_list})
          this.setData({score_second:0})
          this.setData({disabled_btnstart:true})          
          this.setData({timerid:setInterval(()=>{
@@ -102,5 +114,48 @@ export default {
 </script>
 
 <style>
+  .wrap {
+    display: block;
+    padding: 10rpx;
+    background: #696969;
+  }
+  .item {
+    min-width: 20%;
+    min-height: 100rpx;
+    font-size: 22rpx;
+    text-align: center;
+  }
+  .item:nth-of-type(odd) {
+    line-height: 30rpx;
+    background: #afdde3
+  }
+  .item:nth-of-type(2n) {
+    line-height: 50rpx;
+    background: #f397b2
+  }
 
+  .setting-button {
+    display: inline-block;
+    line-height: 50rpx;
+    margin: 20rpx 10rpx 0 0;
+    padding: 2rpx 20rpx;
+    border-radius: 6rpx;
+    background: #31b0d5;
+    color: #ffffff;
+    font-size: 40rpx;
+    text-align: center;
+  }
+
+  .layout-code {
+    padding: 15rpx;
+    background: #222222;
+    color: #FFFFFF;
+    font-size: 20rpx;
+    font-family: Monaco;
+  }
+  .layout-code__point {
+    display: inline-block;
+    padding: 0 5rpx;
+    background: #444444;
+  }
 </style>
