@@ -1,7 +1,7 @@
 <template>
 
 <view>
-
+TYU
 
 
 </view>    
@@ -24,8 +24,6 @@
 <script>
 import mathkit from '../lib/mathkit.js'
 
-
-
 export default {
 
  config: {
@@ -42,8 +40,9 @@ export default {
      score_second:0,
      score_message:'',
      btnname_start:'开练',
-     btnname_complete:'完成'
- },    
+     btnname_complete:'完成',
+     timerid:0
+ },   
 
  methods:{
     addnewpractise:function(event){
@@ -58,31 +57,23 @@ export default {
                         let number = temp_pool[index];
                         value_list.push(number);
                         temp_pool.splice(index, 1);
-                    }
-         //console.log(value_list)
-
+         }
+    
          this.setData({score_second:0})
-       
+         this.setData({timerid:setInterval(()=>{
+             let currentsecond = this.data.score_second + 1
+             this.setData({score_second:currentsecond})
+         }, 1000)})
+         //console.log(timer)
     },
 
     completepractise:function(event){
-      
        let message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
+       clearInterval(this.data.timerid)
        this.setData({score_second:0})
        this.setData({score_message:message}) 
-       this.setData({
-                    $toast: {
-                            show: true
-                        }
-                    })
-
-        setTimeout(() => {
-                    this.setData({
-                        $toast: {
-                            show: false
-                        }
-                        })
-                }, 3000)
+       this.setData({ $toast: { show: true } })
+       setTimeout(() => { this.setData({ $toast: { show: false }}) }, 3000)
     }
   }
 }
