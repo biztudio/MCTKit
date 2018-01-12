@@ -8,10 +8,10 @@ TYU
 
 <view class="section">
   <button type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" lang="zh_CN"
-        disabled="{{disabled}}" bindtap="addnewpractise" hover-class="other-button-hover">{{btnname_start}}</button>
+        disabled="{{disabled_btnstart}}" bindtap="addnewpractise" hover-class="other-button-hover">{{btnname_start}}</button>
 
    <button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}" lang="zh_CN"
-        disabled="{{disabled}}" bindtap="completepractise">{{btnname_complete}}</button>      
+        disabled="{{disabled_btncomplete}}" bindtap="completepractise">{{btnname_complete}}</button>      
 </view>
 
 <wxc-toast
@@ -41,6 +41,8 @@ export default {
      score_message:'',
      btnname_start:'开练',
      btnname_complete:'完成',
+     disabled_btnstart:false,
+     disabled_btncomplete:false,
      timerid:0
  },   
 
@@ -60,15 +62,23 @@ export default {
          }
     
          this.setData({score_second:0})
+         this.setData({disabled_btnstart:true})
          this.setData({timerid:setInterval(()=>{
              let currentsecond = this.data.score_second + 1
              this.setData({score_second:currentsecond})
+             this.setData({btnname_start:'训练计时中: ' + currentsecond + ' 秒'})
+
+             if(currentsecond > 1000){
+                  clearInterval(this.data.timerid)
+             }
          }, 1000)})
          //console.log(timer)
     },
 
     completepractise:function(event){
        let message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
+       this.setData({disabled_btnstart:false})
+       this.setData({btnname_start:'开练'})
        clearInterval(this.data.timerid)
        this.setData({score_second:0})
        this.setData({score_message:message}) 
