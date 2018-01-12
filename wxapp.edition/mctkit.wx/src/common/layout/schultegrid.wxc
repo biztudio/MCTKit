@@ -27,11 +27,13 @@
 </template>
 <script>
 import mathkit from '../lib/mathkit.js'
+
 let default_list = []
 for(let i = 1; i < 26; i++){
     default_list.push(i);
 }
 console.log('I like schulte grid.')
+//const app = getApp()
 
 export default {
 
@@ -44,6 +46,9 @@ export default {
     },
 
  data:{
+    userInfo: {},
+    hasUserInfo: false,
+
      steps: [{
         title: '步骤1',
         desc: '点击绿色“开练”按钮进行计时的顺序搜索'
@@ -54,7 +59,7 @@ export default {
      current: 1,
 
      wrap: 'wrap',
-     
+   
      $toast: { show: false },
      
      cell_value_list:default_list,
@@ -111,20 +116,36 @@ export default {
               
              if(currentsecond > this.data.max_time_seconds){
                   this.resetstartbutton()
-                  let message = '用时过长!\n请认真重新再来一次，谢谢.'
-                  this.showtoastinfo(message, 5000)
+                  let message = '用时过长!\n请认真重新再来一次，拜托了.'
+                  this.showtoastinfo(message, 3000)
              }
          }, 1000)})
+    },
+
+    getUserInfo: function() {
+
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
     },
 
     completepractise:function(event){
        let message = ''
        
-       if(this.data.score_second > 0){
-            message = '恭喜完成，用时 ' + (this.data.score_second) + ' 秒'
+       if(this.data.score_second >= 10){
+            //this.getUserInfo(event)
+            //message = '恭喜'+ this.data.userInfo.nickName +'完成训练! \n本次训练用时 ' + (this.data.score_second) + ' 秒'
+            message = '恭喜完成挑战! \n本次训练用时 ' + (this.data.score_second) + ' 秒'
             this.resetstartbutton()
-            this.showtoastinfo(message, 3000)
+            this.showtoastinfo(message, 4321)
             return
+       }
+       else if(this.data.score_second > 0 && this.data.score_second < 10){
+          let message = '理论上不可能这么快完成!\n请认真重新再来一次，拜托了.'
+          this.resetstartbutton()
+          this.showtoastinfo(message, 3000)
+          return
        }
        this.resetstartbutton()
     }

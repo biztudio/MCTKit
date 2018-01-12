@@ -9,6 +9,8 @@
 
 export default {
   data:{
+    userInfo: {},
+    hasUserInfo: false,
   },
 
   config: {
@@ -23,6 +25,10 @@ export default {
           // 页面显示
           // console.log("Let's practise now.")
         },
+
+  onLoad: function () {
+   
+  }, 
 
   methods:{
    
