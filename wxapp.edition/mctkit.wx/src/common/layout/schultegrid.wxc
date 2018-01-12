@@ -19,7 +19,7 @@
         disabled="{{disabled_btnstart}}" bindtap="showsetting">{{btnname_setting}}</button>           
 </view>
 
-  <wxc-dialog class="wxc-dialog" title="{{btnname_setting}}" content="这里可能是说明文字" confirm-text="确定" cancel-text="取消" bindconfirm="onConfirmSetting" bindcancel="onCancelSetting">
+  <wxc-dialog class="wxc-dialog" title="{{btnname_setting}}" content="阅读训练步骤然后选择的序列模式" confirm-text="确定" bindconfirm="onConfirmSetting" bindcancel="onCancelSetting">
       <view>
             <wxc-steps steps="{{steps}}" current="{{current}}"></wxc-steps>
       </view>
@@ -27,7 +27,7 @@
       <view>
         <text>序列模式：</text>
         <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio" wx:for="{{list_modes}}"  wx:for-item="checkitem"  wx:key="{{checkitem.name}}">
+          <label class="radio"  style="display:flex;" wx:for="{{list_modes}}"  wx:for-item="checkitem"  wx:key="{{checkitem.name}}">
             <radio value="{{checkitem.name}}" checked="{{checkitem.checked}}"/>{{checkitem.value}}
           </label>
         </radio-group>
@@ -67,7 +67,7 @@ export default {
  data:{
     userInfo: {},
     hasUserInfo: false,
-    case_mode: 3,
+    case_mode: 2,
     list_modes: [
       {name: '2', value: '数字', checked: 'true'},
       {name: '1', value: '大写字母'},
@@ -120,8 +120,8 @@ export default {
       })
     },
 
-    addnewpractise:function(event){
-         let number_grid_case = (this.data.case_mode == 2)
+    drawgrid:function(){
+       let number_grid_case = (this.data.case_mode == 2)
          let mixed_grid_case = (this.data.case_mode == 3)
          let x_axis_length = 5
          let y_axis_length = number_grid_case?5:6;
@@ -165,6 +165,10 @@ export default {
          }
 
          this.setData({cell_value_list:value_list})
+    },
+
+    addnewpractise:function(event){
+         this.drawgrid()
          this.setData({score_second:0})
          this.setData({disabled_btnstart:true})          
          this.setData({timerid:setInterval(()=>{
@@ -188,6 +192,7 @@ export default {
     hideDialog:function() {
       let dialogComponent = this.selectComponent('.wxc-dialog')
       dialogComponent && dialogComponent.hide();
+      this.drawgrid();
     },
 
     onConfirmSetting:function(event){
@@ -201,7 +206,8 @@ export default {
     },
 
     radioChange: function(e) {
-      console.log('radio发生change事件，携带value值为：', e.detail.value)
+      //console.log('radio发生change事件，携带value值为：', e.detail.value)
+      this.setData({case_mode:e.detail.value})
     },
 
     getUserInfo: function() {
