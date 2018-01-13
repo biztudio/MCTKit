@@ -99,6 +99,7 @@ export default {
  },   
 
  methods:{
+    
     resetstartbutton:function(){
         clearInterval(this.data.timerid) 
         this.setData({score_second:0})
@@ -216,6 +217,43 @@ export default {
       })
     },
 
+    savepractise:function(){
+      let storagekey = 'grid' + this.data.case_mode
+      let mode = this.data.case_mode
+      let second = this.data.score_second
+      let archive = []
+     
+      try {
+        let value = wx.getStorageSync(storagekey)
+        if (value) {
+            archive = value
+            let max_archive_count = 10
+            if(archive.length > max_archive_count){
+              archive.shift()
+            }
+            let pos = archive.length
+            archive.push({
+                 score_second: second,
+                 index: pos
+              })
+        }
+        else{
+          archive.push({
+              score_second: second,
+              index:0
+            })
+        }
+      } catch (e) {
+        // Do something when catch error
+        console.log(e)
+      }
+
+      wx.setStorage({
+        key:storagekey,
+        data:archive
+      })
+    },
+
     completepractise:function(event){
        let message = ''
        
@@ -223,6 +261,7 @@ export default {
             //this.getUserInfo(event)
             //message = '恭喜'+ this.data.userInfo.nickName +'完成训练! \n本次训练用时 ' + (this.data.score_second) + ' 秒'
             message = '恭喜完成挑战! \n本次训练用时 ' + (this.data.score_second) + ' 秒'
+            this.savepractise()
             this.resetstartbutton()
             this.showtoastinfo(message, 4321)
             return
