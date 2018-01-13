@@ -247,11 +247,12 @@ export default {
         // Do something when catch error
         console.log(e)
       }
-
-      wx.setStorage({
-        key:storagekey,
-        data:archive
-      })
+      if(archive){
+        wx.setStorage({
+          key:storagekey,
+          data:archive
+        })
+      }
     },
 
     completepractise:function(event){
