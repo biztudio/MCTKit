@@ -14,7 +14,7 @@
         component-id="c1"
         label="{{tab.title}}">
 
-            <block wx:if="{{index > 1}}">
+            <block wx:if="{{index > 2}}">
                  {{tab.content}}
             </block>
             <block wx:elif="{{index == 0}}">
@@ -22,6 +22,9 @@
             </block>
             <block wx:elif="{{index == 1}}">
                 <guide ></guide>
+            </block>
+            <block wx:elif="{{index == 2}}">
+                <charts ></charts>
             </block>
 
       </wxc-tab-panel>
@@ -41,6 +44,7 @@ export default {
     usingComponents: {
       'wxc-tab': '@minui/wxc-tab',
       'wxc-tab-panel': '@minui/wxc-tab/panel',
+      'charts':'layout/charts',
       'guide':'layout/guide',
       'schultegrid': 'layout/schultegrid'      
     }
@@ -50,7 +54,7 @@ export default {
     tabs:[
       {title:'舒尔特方格', content:''},
       {title:'指南', content:''},
-      //{title:'设置', content:'施工中...'}
+      {title:'图表', content:''}
     ]
   }
 }

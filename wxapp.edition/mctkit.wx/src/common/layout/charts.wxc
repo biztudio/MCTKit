@@ -1,0 +1,20 @@
+<template>
+训练图表
+</template>
+<script>
+import wxcharts from '../lib/wxcharts-min.js'
+
+wx.getStorage({
+  key: 'grid2',
+  success: function(res) {
+      console.log(res.data)
+
+  } 
+})
+
+export default{
+     onLoad: function() {
+      console.log('this is chart')
+    }
+}
+</script>
