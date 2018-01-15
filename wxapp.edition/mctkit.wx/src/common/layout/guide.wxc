@@ -23,7 +23,6 @@ export default {
  
  config: {
     usingComponents: {
-        'wxc-avatar': '@minui/wxc-avatar',
         'wxc-cc': '@minui/wxc-cc'
     }
   }

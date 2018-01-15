@@ -156,7 +156,7 @@ export default {
               let refindex = referlist.indexOf(letter)
 
               if(index == refindex ||
-                ((letter == 'm' || letter == 'c' || letter == 't') && (index == 0 || index == this.data.case.case_mode))||
+                ((letter == 'm' || letter == 'c' || letter == 't') && (index == 0 || index == this.data.case_mode))||
                 (index == letter.charCodeAt()%this.data.case_mode)||
                 (refindex == letter.charCodeAt()%this.data.case_mode)||
                 (refindex > index && index%refindex == this.data.case_mode)||
@@ -239,8 +239,12 @@ export default {
         if (value) {
             archive = value
             let max_archive_count = 10
-            if(archive.length > max_archive_count){
+            if(archive.length >= max_archive_count){
               archive.shift()
+              for(let index in archive){
+                //console.log(index)
+                archive[index].index = index
+              }        
             }
             let pos = archive.length
             archive.push({
@@ -278,7 +282,7 @@ export default {
             message = '恭喜完成挑战! \n本次训练用时 ' + (this.data.score_second) + ' 秒'
             this.savepractise()
             this.resetstartbutton()
-            this.showtoastinfo(message, 4321)
+            this.showtoastinfo(message, 2000)
             return
        }
        else if(this.data.score_second > 0 && this.data.score_second < 10){
