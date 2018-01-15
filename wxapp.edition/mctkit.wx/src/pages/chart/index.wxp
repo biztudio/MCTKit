@@ -1,0 +1,41 @@
+<template>
+  <view>
+    <canvas  wx:for="{{charts}}"  wx:key="id" wx:for-item="idx" canvas-id="{{item.id}}" disable-scroll="true" class="canvas" ></canvas>
+
+  </view>
+</template>
+
+<script>
+import wxCharts from '../../common/lib/wxcharts-min.js'
+
+export default {
+  config: {
+    navigationBarTitleText: '训练统计',
+    usingComponents: {}
+  },
+  data: {
+     charts:[
+       {title:'数字方格', id:'grid2'},
+       {title:'大写字母', id:'grid1'},
+       {title:'小写字母', id:'grid0'},
+       {title:'大小写混合', id:'grid3'}
+     ]
+  },
+
+  onLoad: function (e) {
+      for(let chart of this.data.charts){
+        wx.getStorage({
+          key: chart.id,
+          success: function(res) {
+              console.log(chart.id)
+              console.log(res.data)
+
+          } 
+        })
+      }
+  }
+}
+</script>
+
+<style>
+</style>

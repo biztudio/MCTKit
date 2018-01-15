@@ -16,6 +16,9 @@
         disabled="{{disabled_btncomplete}}" bindtap="completepractise">{{btnname_complete}}</button>      
 
    <button type="default" size="default"  lang="zh_CN"
+            disabled="{{disabled_btnstart}}" bindtap="showcharting">{{btnname_chart}}</button>        
+
+   <button type="default" size="default"  lang="zh_CN"
         disabled="{{disabled_btnstart}}" bindtap="showsetting">{{btnname_setting}}</button>           
 </view>
 
@@ -34,13 +37,10 @@
       </view>
   </wxc-dialog>
 
-<wxc-toast
-    is-show="{{$toast.show}}"
-    text="{{score_message}}"
-    ></wxc-toast>
+<wxc-toast is-show="{{$toast.show}}" text="{{score_message}}" ></wxc-toast>
 </template>
 <script>
-import mathkit from '../lib/mathkit.js'
+import mathkit from '../lib/mathkit'
 import alphabetkit from '../lib/alphabet'
 
 let default_list = []
@@ -92,6 +92,7 @@ export default {
      btnname_start:'开练',
      btnname_complete:'完成',
      btnname_setting:'设置与说明',
+     btnname_chart:'近期成绩',
      disabled_btnstart:false,
      disabled_btncomplete:false,
      max_time_seconds:600,
@@ -99,6 +100,15 @@ export default {
  },   
 
  methods:{
+
+   showcharting:function(e){
+      wx.navigateTo({
+        url: '/pages/chart/index',
+        success:res => {},
+        fail:err => {},
+        complete:_ => {}
+      })
+   },
     
     resetstartbutton:function(){
         clearInterval(this.data.timerid) 
@@ -146,6 +156,7 @@ export default {
               let refindex = referlist.indexOf(letter)
 
               if(index == refindex ||
+                ((letter == 'm' || letter == 'c' || letter == 't') && (index == 0 || index == this.data.case.case_mode))||
                 (index == letter.charCodeAt()%this.data.case_mode)||
                 (refindex == letter.charCodeAt()%this.data.case_mode)||
                 (refindex > index && index%refindex == this.data.case_mode)||
@@ -250,7 +261,10 @@ export default {
       if(archive){
         wx.setStorage({
           key:storagekey,
-          data:archive
+          data:archive,
+          success:function(e){
+            //console.log('new record saved.')
+          }
         })
       }
     },

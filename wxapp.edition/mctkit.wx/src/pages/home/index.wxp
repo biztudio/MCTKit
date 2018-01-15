@@ -10,7 +10,8 @@
 export default {
   data:{
     userInfo: {},
-    hasUserInfo: false,
+    hasUserInfo: false
+
   },
 
   config: {
