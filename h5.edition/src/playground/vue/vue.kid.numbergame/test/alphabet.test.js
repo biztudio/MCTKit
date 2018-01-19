@@ -9,7 +9,6 @@ describe('Test Alphabet Kit', ()=>{
    
     test('Test Alphabet lower array as expected', () => {
         let letter_list = alphabetkit.get_letter_list();
-        console.log(letter_list);
         expect(letter_list.join('')).toBe(alphabetkit.source);
     });
 
