@@ -4,12 +4,14 @@ import 'babel-polyfill';
 import numbercolumn from './components/numbercolumn/numbercolumn.vue';
 import numbergrid from './components/numbergrid/numbergrid.vue';
 import alphabetgrid from './components/alphabetgrid/alphabetgrid.vue';
+import sudoku from './components/sudoku/sudoku.vue';
 import {Input } from 'iview';
 
 Vue.component('Input', Input);
 Vue.component('numbergrid', numbergrid);
 Vue.component('numbercolumn', numbercolumn);
 Vue.component('alphabetgrid', alphabetgrid);
+Vue.component('sudoku',sudoku);
 
 var capp = new Vue({
     el:"#capp",

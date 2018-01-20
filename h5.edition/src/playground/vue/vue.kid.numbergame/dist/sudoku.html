@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf8">
+        <title>Schulte Grid</title>
+        <link rel="shortcut icon" href="./favicon.ico" />
+        <link rel="stylesheet" href="./docs.min.css" type="text/css" />
+        <!-- import stylesheet -->
+        <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+        <style media=print type="text/css">  
+            .noprint{visibility:hidden}  
+        </style>   
+        <style>
+                .divtitle
+                {
+                    background-color:#2CA3E7;
+                    color:#FFFFFF;
+                }
+                
+                .footerStyle {			
+                    background-color:#FFFFFF;
+                }
+            </style>
+            
+    </head>
+
+    <body>
+        <div id='capp'>           
+            <div>
+                <sudoku id = 'mxmnc' :group='1'></sudoku>
+            </div>    
+        </div>
+
+        
+        <!-- referred common lib, such as vue -->
+        <script src="./vendor.bundle.js" ></script>
+        <!-- js the app itself -->
+        <script src="./app.bundle.js" ></script>
+        
+    </body>    
+</html>
