@@ -85,7 +85,61 @@ export default{
             grid3_line3.splice(index_3, 1)
         }
 
+        for(let line_index = 3; line_index < 9; line_index++){//scan line
+            let source = grid_seed.slice(0);
+            let number = 1;
 
+            for(let index_in_line = 0; index_in_line < 9; index_in_line++){//scan index in line               
+                let index_flag = index_in_line;
+                let rest_digits_in_column = [];
+                for(let position = 0; position < 9; position++){
+                    let digit_on_pos = sudoku[position * 9 + index_in_line]
+                    if(digit_on_pos > 0){
+                        rest_digits_in_column.push(digit_on_pos)
+                    }
+                }
+
+                let sudokukindex = line_index * 9 + index_in_line;
+                let grid_column_index = Math.floor(index_in_line/3);
+                let grid_line_index = Math.floor(line_index/3);
+                let rest_digits_in_grid = [];
+                let init_grid_index = 9 * (grid_line_index  * 3) + (grid_column_index) * 3; 
+                rest_digits_in_grid.push(sudoku[init_grid_index]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+1]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+2]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+9]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+10]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+11]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+18]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+19]);
+                rest_digits_in_grid.push(sudoku[init_grid_index+20]);
+                rest_digits_in_grid = rest_digits_in_grid.filter(g => g > 0);
+                
+                let digits_for_cell = source.filter(s => !rest_digits_in_column.includes(s) && !rest_digits_in_grid.includes(s));
+                let selectedindex = mathkit.get_random_number_index(digits_for_cell.length);
+                number = digits_for_cell[selectedindex];
+
+                if(!rest_digits_in_column.includes(number)){
+                    sudoku[sudokukindex] = number;
+                    let sourceindex = source.indexOf(number);
+                    source.splice(sourceindex, 1);
+                }
+                else{
+                    index_in_line = index_flag;
+                }
+
+                if(line_index == 3 && sudokukindex < 39){
+                    console.log(sudokukindex)
+                    console.log(init_grid_index)
+                    console.log(sudoku[sudokukindex])
+                    console.log(sudoku[init_grid_index])
+                    //console.log(rest_digits_in_column)
+                    console.log(rest_digits_in_grid)
+                    console.log(digits_for_cell)
+                }
+            }
+
+        }
         /*        
         console.log(grid_0)        
         console.log(ref_digits_grid0_line2)
@@ -97,6 +151,6 @@ export default{
         
         console.log(sudoku)
         */
-        return sudoku
+        return sudoku;
     }
 }
