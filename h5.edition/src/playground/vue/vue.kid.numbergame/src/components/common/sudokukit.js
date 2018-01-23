@@ -70,14 +70,11 @@ export default{
         let line_index = this.getLineIndex(index)
         let colum_index = this.getColumnIndex(index)       
         let grid_indes = []
-        console.log(line_index)
-        console.log(colum_index)
         for(let grid_init_index of grid_init_indes){
             let grid_start_col_index = this.getColumnIndex(grid_init_index)
             let grid_start_line_index = this.getLineIndex(grid_init_index)
             let column_offset = colum_index - grid_start_col_index
             let line_offset = line_index - grid_start_line_index
-            //console.log('gride init index: ' + grid_init_index + ', grid start line index:' + grid_start_line_index + ', grid start col index: ' + grid_start_col_index)
             if(column_offset >= 0 && column_offset <=2 && 
                 line_offset >= 0 && line_offset <=2){
                     for(let gi = 0; gi < 3; gi++){
@@ -93,7 +90,6 @@ export default{
                                              else if (m > n) return 1
                                              else return 0
         })
-        console.log(sorted_result)   
         return sorted_result
     },
 
@@ -101,7 +97,6 @@ export default{
         if(!seed){ seed = [1,2,3,4,5,6,7,8,9] }
         let line_start_index =  this.getStartIndexInLine(index)
         let column_indes = this.getIndexListInColum(index)
-        console.log(column_indes)
         let existed_digits = []
         for(let i = 0; i < 9; i++){
             //digit in line
@@ -173,11 +168,29 @@ export default{
                 grid_init_indes.push(init_grid_index)
         }
 
-        let grid_template = this.generateSeedArray(grid_seed) 
-        for(let sudokuindex in sudoku){
+        let grid_template = this.generateSeedArray(grid_seed)
+        let first_column = this.getIndexListInColum(0)
+        let last_column = this.getIndexListInColum(8)
+        for(let sudokuindex = 0; sudokuindex < 9; sudokuindex++){
+            sudoku[sudokuindex] = grid_template[sudokuindex]
+        }
+        for(let sudokuindex of first_column){
             if(sudoku[sudokuindex] == 0){
                 let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
                 sudoku[sudokuindex] = number
+            }
+        }
+        for(let sudokuindex of last_column){
+            if(sudoku[sudokuindex] == 0){
+                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
+                sudoku[sudokuindex] = number
+            }
+        }
+
+        for(let sudokuindex in sudoku){
+            if(sudoku[sudokuindex] == 0){
+                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
+                //sudoku[sudokuindex] = number
             }
         }
 /*
