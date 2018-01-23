@@ -93,6 +93,18 @@ export default{
         return sorted_result
     },
 
+    validateNumberPositionInColumn:function(index, number, sudoku){
+        let cindes = this.getIndexListInColum(index)
+        let map = true;
+        for(let cindex of cindes){
+            if(sudoku[cindex] == number){
+                map = false;
+                break;
+            }
+        }
+        return map
+    },
+
     getNumber:function(index, sudoku, seed, grid_init_indes){
         if(!seed){ seed = [1,2,3,4,5,6,7,8,9] }
         let line_start_index =  this.getStartIndexInLine(index)
@@ -119,7 +131,7 @@ export default{
         }
 
         for(let number of seed.filter(s => !existed_digits.includes(s))){
-            return number
+            return number;
         }
     },
 
@@ -137,25 +149,6 @@ export default{
         let max_count_per_column = y_grid_count * y_cell_count_per_grid
         let max_lenght = max_count_per_column * max_count_per_line
         for(let index = 0; index < max_lenght; index++){ sudoku.push(0) }
-        /*
-        for(let gi = 0; gi < 3; gi++){
-            let gi_1_sudoku = gi
-            let gi_2_sudoku = gi + max_count_per_line * y_cell_count_per_grid + x_cell_count_per_grid
-            let gi_3_sudoku = gi + max_count_per_line * y_cell_count_per_grid * 2 + x_cell_count_per_grid * 2
-
-            sudoku[gi_1_sudoku] = grid_0_0[gi]
-            sudoku[gi_1_sudoku + 9] = grid_0_0[gi + 3]
-            sudoku[gi_1_sudoku + 18] = grid_0_0[gi + 6]
-
-            sudoku[gi_2_sudoku] = grid_1_1[gi]
-            sudoku[gi_2_sudoku + 9] = grid_1_1[gi + 3]
-            sudoku[gi_2_sudoku + 18] = grid_1_1[gi + 6]
-
-            sudoku[gi_3_sudoku] = grid_2_2[gi]
-            sudoku[gi_3_sudoku + 9] = grid_2_2[gi + 3]
-            sudoku[gi_3_sudoku + 18] = grid_2_2[gi + 6]
-        }
-        */ 
         
         let grid_init_indes = []
         for(let sudokuindex in sudoku){
@@ -168,69 +161,125 @@ export default{
                 grid_init_indes.push(init_grid_index)
         }
 
-        let grid_template = this.generateSeedArray(grid_seed)
+        let source_seed = this.generateSeedArray(grid_seed)
         let first_column = this.getIndexListInColum(0)
         let last_column = this.getIndexListInColum(8)
-        for(let sudokuindex = 0; sudokuindex < 9; sudokuindex++){
-            sudoku[sudokuindex] = grid_template[sudokuindex]
-        }
-        for(let sudokuindex of first_column){
-            if(sudoku[sudokuindex] == 0){
-                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
-                sudoku[sudokuindex] = number
-            }
-        }
-        for(let sudokuindex of last_column){
-            if(sudoku[sudokuindex] == 0){
-                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
-                sudoku[sudokuindex] = number
-            }
-        }
+        let grid_template = source_seed.slice(0)
 
+        let current_line = 0
         for(let sudokuindex in sudoku){
-            if(sudoku[sudokuindex] == 0){
-                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
-                //sudoku[sudokuindex] = number
-            }
-        }
-/*
-        for(let grid_index in grid_init_indes){
-            //0 4 8 grid is ready
-            if(grid_index == 0 || grid_index == 4 || grid_index == 8) continue
-
-            let grid_start_index = grid_init_indes[grid_index]
-            for(let gi = grid_start_index; gi < grid_start_index + 3; gi++)
-            {
-                let existed_digits = []
-
-                   
-                    let line_index = Math.floor(gi/9)
-                    sudoku[gi] = number
-                    sudoku[gi + 9] = number
-                    sudoku[gi + 18] = number
-                   
-            }                
-        }
-*/
-            /*
-            for(let sudokuindex in sudoku){
+            let line_index = this.getLineIndex(sudokuindex)
+            if(line_index % 3 < 1){
                 if(sudoku[sudokuindex] == 0){
-
-                    let line_index = Math.floor(sudokuindex / 9)
-                    let index_in_line = sudokuindex % 9
-                    let existed_digits = []
-                    for(let i = line_index * 9; i < (line_index + 1) * 9; i++){//current line ref
-                        let ref_number = sudoku[i]
-                        if(ref_number > 0){
-                            existed_digits.push(ref_number)
+                    if(current_line != line_index){
+                        if(line_index == 3 || line_index == 6){
+                            let temp_num = grid_template.shift()
+                            grid_template.push(temp_num)
                         }
+                        if(line_index == 1 || line_index == 4 || line_index == 7){
+
+                        } 
+                        current_line = line_index                      
                     }
-                    
+                    let colindex = this.getColumnIndex(sudokuindex)
+                    sudoku[sudokuindex] = grid_template[colindex]
                 }
             }
-            */
+        }
 
+        current_line = 0
+        for(let sudokuindex in sudoku){
+            let line_index = this.getLineIndex(sudokuindex)
+            if(line_index % 3 == 1){
+                if(sudoku[sudokuindex] == 0){
+                    if(current_line != line_index){
+                        if(line_index == 1 || line_index == 4 || line_index == 7){
+                            let temp_num = grid_template.shift()
+                            grid_template.push(temp_num)
+                            temp_num = grid_template.shift()
+                            grid_template.push(temp_num)
+                        } 
+                        current_line = line_index                      
+                    }
+                    let colindex = this.getColumnIndex(sudokuindex)
+                    sudoku[sudokuindex] = grid_template[colindex]
+                }
+            }
+        }
+
+        grid_template = source_seed.slice(0)
+        for(let gindex of grid_init_indes){
+            let line_index = this.getLineIndex(gindex)
+            if(line_index > 3) break;
             
+            let grid_indes = this.getIndexListInGrid(gindex)
+            let existed_digits = []
+            let empty_indes = []
+            for(let sudokuindex of grid_indes){
+                if(sudoku[sudokuindex] > 0){
+                    existed_digits.push(sudoku[sudokuindex])
+                }
+                else{
+                    empty_indes.push(sudokuindex)
+                }
+            }            
+            let available_digits = grid_template.filter(e => !existed_digits.includes(e))
+            let value_map = []
+            //console.log(available_digits)
+            for(let number of available_digits){
+                for(let celli = 0; celli < empty_indes.length; celli++){
+                    let sudokuindex      = empty_indes[celli]
+                    let sudokuindex_ref1 = 0
+                    let sudokuindex_ref2 = 0
+                    if(celli == 0){
+                        sudokuindex_ref1 = empty_indes[celli * 1 + 1]
+                        sudokuindex_ref2 = empty_indes[celli * 1 + 2]
+                    }
+                    else if(celli == 1){
+                        sudokuindex_ref1 = empty_indes[celli * 1 - 1]
+                        sudokuindex_ref2 = empty_indes[celli * 1+ 1]
+                    }
+                    else{
+                        sudokuindex_ref1 = empty_indes[celli * 1 - 2]
+                        sudokuindex_ref2 = empty_indes[celli * 1 - 1]
+                    }
+
+                    let flag      = this.validateNumberPositionInColumn(sudokuindex, number, sudoku)?1:0
+                    let flag_ref1 = this.validateNumberPositionInColumn(sudokuindex_ref1, number, sudoku)?1:0
+                    let flag_ref2 = this.validateNumberPositionInColumn(sudokuindex_ref2, number, sudoku)?1:0
+                    value_map.push({
+                        number:number,
+                        flag:flag,
+                        flag_ref1:flag_ref1,
+                        flag_ref2:flag_ref2,
+                        sudokuindex: sudokuindex
+                    })
+                }
+            }
+            //console.table(value_map)
+            let fill_grid_indes = []
+            for(let vm of value_map){
+                if(vm.flag == 1 && vm.flag+vm.flag_ref1+vm.flag_ref2 < 2){
+                    sudoku[vm.sudokuindex] = vm.number
+                    fill_grid_indes.push(vm.sudokuindex)
+                }
+            }
+            let left_vm = value_map.filter(vm => vm.flag == 1 && vm.flag+vm.flag_ref1+vm.flag_ref2 >= 1 && !fill_grid_indes.includes(vm.sudokuindex))
+            if(left_vm){
+                sudoku[left_vm[0].sudokuindex] = left_vm[0].number
+            }
+        }
+
+        //last line
+        for(let cindex = 72; cindex < 81; cindex++){
+            let col_indes = this.getIndexListInColum(cindex)
+            let temp_sum = 0
+            for(let cli of col_indes){
+                temp_sum += (sudoku[cli] * 1)
+            }
+            sudoku[cindex] = 45 - temp_sum
+        }
+
         return sudoku;
     }
 }
