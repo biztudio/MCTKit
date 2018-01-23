@@ -18,6 +18,108 @@ export default{
         return grid
     },
 
+    getLineIndex:function(index){
+        return Math.floor(index / 9);
+    },
+
+    getColumnIndex:function(index){
+        return index % 9
+    },
+
+    getStartIndexInLine:function(index){
+        let line_index = this.getLineIndex(index)
+        return line_index * 9
+    },
+
+    getIndexListInColum:function(index){
+        let column_start_index = this.getColumnIndex(index)
+        let indes = []
+        for(let i = 0; i < 9; i++){
+            indes.push(column_start_index + i * 9)
+        }
+        return indes
+    },
+
+    getInitializedSudoku9:function(){
+        let sudoku = []       
+        for(let index = 0; index < 81; index++){ sudoku.push(0) }
+        return sudoku
+    },
+
+    getStartIndesInGrids:function(sudoku){
+        if(!sudoku){
+           sudoku = this.getInitializedSudoku9()
+        }
+        let grid_init_indes = []
+        for(let sudokuindex in sudoku){
+            let line_index = Math.floor(sudokuindex / 9)
+            let cell_index_in_line = sudokuindex % 9
+            let grid_column_index = Math.floor(cell_index_in_line/3);
+            let grid_line_index = Math.floor(line_index/3);
+            let init_grid_index = 9 * (grid_line_index  * 3) + (grid_column_index) * 3;
+            if(!grid_init_indes.includes(init_grid_index))
+                grid_init_indes.push(init_grid_index)
+        }
+        return grid_init_indes
+    },
+
+    getIndexListInGrid:function(index, grid_init_indes){
+        if(!grid_init_indes){
+            grid_init_indes = this.getStartIndesInGrids()
+        }
+        let line_index = this.getLineIndex(index)
+        let colum_index = this.getColumnIndex(index)       
+        let grid_indes = []
+        console.log(line_index)
+        console.log(colum_index)
+        for(let grid_init_index of grid_init_indes){
+            let grid_start_col_index = this.getColumnIndex(grid_init_index)
+            let grid_start_line_index = this.getLineIndex(grid_init_index)
+            let column_offset = colum_index - grid_start_col_index
+            let line_offset = line_index - grid_start_line_index
+            //console.log('gride init index: ' + grid_init_index + ', grid start line index:' + grid_start_line_index + ', grid start col index: ' + grid_start_col_index)
+            if(column_offset >= 0 && column_offset <=2 && 
+                line_offset >= 0 && line_offset <=2){
+                    for(let gi = 0; gi < 3; gi++){
+                        grid_indes.push((grid_init_index + gi)*1)
+                        grid_indes.push((grid_init_index + gi + 9)*1)
+                        grid_indes.push((grid_init_index + gi + 18)*1)
+                    }
+                    break;
+                }
+        }
+        let sorted_result = grid_indes.sort(function (m, n) {
+                                             if (m < n) return -1
+                                             else if (m > n) return 1
+                                             else return 0
+        })
+        console.log(sorted_result)   
+        return sorted_result
+    },
+
+    getNumber:function(index, sudoku){
+        let seed = [1,2,3,4,5,6,7,8,9]
+        let line_start_index =  this.getStartIndexInLine(index)
+        let column_indes = this.getColumnIndex(index)        
+        let existed_digits = []
+        for(let i = 0; i < 9; i++){
+            //digit in line
+            let existed_digit = sudoku[line_start_index + i] * 1
+            if(existed_digit > 0){
+                existed_digits.push(existed_digit)
+            }
+            //digit in column
+            existed_digit = sudoku[column_indes[i]]
+            if(existed_digit > 0){
+                existed_digits.push(existed_digit)
+            }
+        }
+
+        for(let number of seed){
+            
+        }
+    },
+
     getSudokuSourceData:function(){
         let x_grid_count = 3
         let y_grid_count = 3
@@ -62,23 +164,24 @@ export default{
         }
 
         let grid_template = this.generateSeedArray(grid_seed) 
-        for(let number of grid_template){
 
-            for(let grid_index in grid_init_indes){
-                //0 4 8 grid is ready
-                if(grid_index == 0 || grid_index == 4 || grid_index == 8) continue
+        for(let grid_index in grid_init_indes){
+            //0 4 8 grid is ready
+            if(grid_index == 0 || grid_index == 4 || grid_index == 8) continue
 
-                if(grid_index != 1) continue
-                let grid_start_index = grid_init_indes[grid_index]
-                for(let gi = grid_start_index; gi < grid_start_index + 3; gi++)
-                {
+            let grid_start_index = grid_init_indes[grid_index]
+            for(let gi = grid_start_index; gi < grid_start_index + 3; gi++)
+            {
+                let existed_digits = []
+
+                    /*
                     let line_index = Math.floor(gi/9)
                     sudoku[gi] = number
                     sudoku[gi + 9] = number
                     sudoku[gi + 18] = number
-
-                }                
-            }
+                    */
+            }                
+        }
 
             /*
             for(let sudokuindex in sudoku){
@@ -98,7 +201,6 @@ export default{
             }
             */
 
-        }
             
         return sudoku;
     }
