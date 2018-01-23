@@ -97,10 +97,11 @@ export default{
         return sorted_result
     },
 
-    getNumber:function(index, sudoku){
-        let seed = [1,2,3,4,5,6,7,8,9]
+    getNumber:function(index, sudoku, seed, grid_init_indes){
+        if(!seed){ seed = [1,2,3,4,5,6,7,8,9] }
         let line_start_index =  this.getStartIndexInLine(index)
-        let column_indes = this.getColumnIndex(index)        
+        let column_indes = this.getIndexListInColum(index)
+        console.log(column_indes)
         let existed_digits = []
         for(let i = 0; i < 9; i++){
             //digit in line
@@ -114,9 +115,16 @@ export default{
                 existed_digits.push(existed_digit)
             }
         }
+        let grid_indes = this.getIndexListInGrid(index, grid_init_indes)
+        for(let gi of grid_indes){
+            let existed_digit = sudoku[gi] * 1
+            if(existed_digit > 0){
+                existed_digits.push(existed_digit)
+            }
+        }
 
-        for(let number of seed){
-            
+        for(let number of seed.filter(s => !existed_digits.includes(s))){
+            return number
         }
     },
 
@@ -134,6 +142,7 @@ export default{
         let max_count_per_column = y_grid_count * y_cell_count_per_grid
         let max_lenght = max_count_per_column * max_count_per_line
         for(let index = 0; index < max_lenght; index++){ sudoku.push(0) }
+        /*
         for(let gi = 0; gi < 3; gi++){
             let gi_1_sudoku = gi
             let gi_2_sudoku = gi + max_count_per_line * y_cell_count_per_grid + x_cell_count_per_grid
@@ -151,7 +160,8 @@ export default{
             sudoku[gi_3_sudoku + 9] = grid_2_2[gi + 3]
             sudoku[gi_3_sudoku + 18] = grid_2_2[gi + 6]
         }
-
+        */ 
+        
         let grid_init_indes = []
         for(let sudokuindex in sudoku){
             let line_index = Math.floor(sudokuindex / 9)
@@ -164,7 +174,13 @@ export default{
         }
 
         let grid_template = this.generateSeedArray(grid_seed) 
-
+        for(let sudokuindex in sudoku){
+            if(sudoku[sudokuindex] == 0){
+                let number = this.getNumber(sudokuindex, sudoku, grid_template, grid_init_indes)
+                sudoku[sudokuindex] = number
+            }
+        }
+/*
         for(let grid_index in grid_init_indes){
             //0 4 8 grid is ready
             if(grid_index == 0 || grid_index == 4 || grid_index == 8) continue
@@ -174,15 +190,15 @@ export default{
             {
                 let existed_digits = []
 
-                    /*
+                   
                     let line_index = Math.floor(gi/9)
                     sudoku[gi] = number
                     sudoku[gi + 9] = number
                     sudoku[gi + 18] = number
-                    */
+                   
             }                
         }
-
+*/
             /*
             for(let sudokuindex in sudoku){
                 if(sudoku[sudokuindex] == 0){
