@@ -1,6 +1,39 @@
 import sudokukit from '../src/components/common/sudokukit'
 
 describe('Test Sudoku Kit', ()=>{
+    test('Test the validation of sudoku', () => {
+        let sudoku = sudokukit.getSudokuSourceData()
+        let validation = sudokukit.checkSudoku(sudoku)
+        expect(validation.checksum).toBe(45)
+        if(!validation.validation){
+            console.table(validation)            
+        }
+        let sudoku_line = ''
+        for(let sudokuindex in sudoku){
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudoku[sudokuindex]
+        }
+        console.log(sudoku_line)
+
+        sudoku = sudokukit.getSudokuSourceData()
+        validation = sudokukit.checkSudoku(sudoku)
+        expect(validation.checksum).toBe(45)
+        if(!validation.validation){
+            console.table(validation)
+        }
+        sudoku_line = ''
+        for(let sudokuindex in sudoku){
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudoku[sudokuindex]
+        }
+        console.log(sudoku_line)
+    });
+
+
     test('Test the Sudoku get Line Index', ()=>{
         let lineIndex = sudokukit.getLineIndex(1);
         expect(lineIndex).toBe(0)
