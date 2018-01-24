@@ -11,15 +11,11 @@
         </thead>
         <tr v-for='(h, i) in g.data'>
             <td v-for="(r, i) in h" style="border:solid#000 1px;">
-              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;" v-if='mode > 0'>
-                {{r.value}}
+              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;">
+                <span v-if='r.display > 0 '>{{r.display}}</span>
+                <span style="font-style:oblique;color:gray" v-if='r.display <= 0 &&  mode > 0' >{{r.value}}</span>
+                <span v-if='r.display <= 0 &&  mode <= 0'> </span>                               
               </div>
-              
-              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;" v-if='mode <= 0'> 
-                <span v-if='r.display > 0'>{{r.display}}</span>
-                <span v-if='r.display <= 0'> </span>
-              </div>
-
             </td>
         </tr>
       </table>
