@@ -5,31 +5,52 @@ export default{
     data(){
         return{
             _grids:[],
-            sudoku:[]
+            _sudokuPuzzle:[]
         }
     },
 
     created:function(){
+       this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
        this.drawsudoku()
     },
 
+    watch:{
+        mode:function(){            
+            this.drawsudoku()
+        },
+
+        level:function(){
+            this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
+            this.drawsudoku()
+        }
+    },
+
     methods:{
+
         drawsudoku:function(){
+            //console.log(this._sudokuPuzzle)
             let x_axis_length = 9;
             let y_axis_length = 9;
             let gp = 1;
             this._grids = [];
             let top_pos = 30;
             let left_pos = 10;
+            let display_mode = (this.mode!= undefined && this.mode && this.mode > 0)?1:0
             for(let g = 0; g < gp; g++){
                 let grid = [];
-                let grid_cell_value_list = sudokukit.getSudokuSourceData()
+                let grid_cell_value_list = this._sudokuPuzzle
                 for(let y_axis_index = 0; y_axis_index < y_axis_length; y_axis_index++){
                     let row = [];
                     for(let x_axis_index = 0; x_axis_index < x_axis_length; x_axis_index++){
                         if(grid_cell_value_list.length > 0){
                             let letter = grid_cell_value_list.shift();
-                            row.push(letter);
+                            if(display_mode <= 0){
+                                row.push(letter.display);
+                            }
+                            else{
+                                console.log(letter.value)
+                                row.push(letter.value)
+                            }
                         }
                         else{
                             row.push('');
@@ -54,6 +75,8 @@ export default{
 
     props:[
         'group',
+        'level',
+        'mode',
         'id'
     ]
 }

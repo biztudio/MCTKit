@@ -1,6 +1,6 @@
 <template>
   <div :id='id'>
-
+    <div style="display:none">{{level}}.{{mode}}</div>
     <div v-for='(g, gi) in _grids' :style="g.style_config" >
 
       <table class="grid_container">
@@ -11,7 +11,8 @@
         </thead>
         <tr v-for='(h, i) in g.data'>
             <td v-for="(r, i) in h" style="border:solid#000 1px;">
-              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;">{{r}}</div>
+              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;" v-if='r > 0'>{{r}}</div>
+              <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;" v-if='r <= 0'> </div>
             </td>
         </tr>
       </table>

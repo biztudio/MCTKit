@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 import Vue from 'vue';
+//import Vuex from 'vuex';
 import 'babel-polyfill';
 import numbercolumn from './components/numbercolumn/numbercolumn.vue';
 import numbergrid from './components/numbergrid/numbergrid.vue';
@@ -12,10 +13,24 @@ Vue.component('numbergrid', numbergrid);
 Vue.component('numbercolumn', numbercolumn);
 Vue.component('alphabetgrid', alphabetgrid);
 Vue.component('sudoku',sudoku);
+//Vue.use(Vuex);
 
 var capp = new Vue({
     el:"#capp",
     data:{
+        sudoku_level_model:3,
+        sudoku_mode_model:0,
+        sudoku_level_list:[
+            {value:'2', label:'Easy'},
+            {value:'3', label:'Normal'},
+            {value:'4', label:'Interesting'},
+            {value:'5', label:'Challenge'}           
+        ],
+        sudoku_mode_list:[
+            {value:'0', label:'Practice'},
+            {value:'1', label:'Answer'}
+        ],
+
         group_model:1,
         height_model:10,
         width_model:3,
@@ -49,6 +64,13 @@ var capp = new Vue({
             ,{value: '7', label: '7 groups'},{value: '8', label: '8 groups'}
         ]
     },
+
+    watch:{
+        sudoku_level_list:function(){
+            //this.sudoku_level_model = 0
+        }
+    },
+
     methods:{
         add_new_todoitem:function(){
             console.log('Hi, todo.')
