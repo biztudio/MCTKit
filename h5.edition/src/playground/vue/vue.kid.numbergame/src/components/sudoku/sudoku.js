@@ -48,10 +48,7 @@ export default{
                             if(grid_cell_value_list.length > 0){
                                 let letter = grid_cell_value_list.shift();
                                 row.push(letter)
-                            }
-                            else{
-                                row.push('');
-                            }
+                            }                            
                         }  
                         grid.push(row);                  
                     }
