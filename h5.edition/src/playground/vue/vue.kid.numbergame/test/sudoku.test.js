@@ -33,6 +33,72 @@ describe('Test Sudoku Kit', ()=>{
         console.log(sudoku_line)
     });
 
+    test('Test Sudoku Puzzle', () =>{
+        let sudokuPuzzle = sudokukit.getSudokuPuzzle().SudokuPuzzle
+        let sudoku_line = ''
+        for(let sudokuindex in sudokuPuzzle){            
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudokuPuzzle[sudokuindex].display
+        }
+        console.log(sudoku_line)
+        sudoku_line = ''
+        for(let sudokuindex in sudokuPuzzle){            
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudokuPuzzle[sudokuindex].value
+        }
+        console.log(sudoku_line)
+        expect(sudokuPuzzle.length).toBe(81)
+
+        sudokuPuzzle = sudokukit.getSudokuPuzzle(5).SudokuPuzzle
+        sudoku_line = ''
+        for(let sudokuindex in sudokuPuzzle){            
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudokuPuzzle[sudokuindex].display
+        }
+        console.log(sudoku_line)
+        sudoku_line = ''
+        for(let sudokuindex in sudokuPuzzle){            
+            if(sudokuindex % 9 == 0){
+                sudoku_line += '\n'
+            }
+            sudoku_line += ' ' + sudokuPuzzle[sudokuindex].value
+        }
+        console.log(sudoku_line)
+        expect(sudokuPuzzle.length).toBe(81)
+    });
+
+    test('Test Hide Posions by Puzzle Level', () => {
+        let hide_postions = sudokukit.getHidePositionInGrid()
+        console.log(hide_postions)
+
+        hide_postions = sudokukit.getHidePositionInGrid(5)
+        console.log(hide_postions)
+        expect(hide_postions.length).toBe(5) 
+    });
+
+    test('Test Sudoku Level Value', ()=>{
+        let level = sudokukit.getPuzzleLevel()
+        expect(level).toBe(3)
+        level = sudokukit.getPuzzleLevel(3)
+        expect(level).toBe(3)
+        level = sudokukit.getPuzzleLevel(5)
+        expect(level).toBe(5)
+        level = sudokukit.getPuzzleLevel(4)
+        expect(level).toBe(4)
+        level = sudokukit.getPuzzleLevel(0)
+        expect(level).toBe(3)
+        level = sudokukit.getPuzzleLevel(2)
+        expect(level).toBe(2)
+        level = sudokukit.getPuzzleLevel(6)
+        expect(level).toBe(5)
+    });
+
 
     test('Test the Sudoku get Line Index', ()=>{
         let lineIndex = sudokukit.getLineIndex(1);

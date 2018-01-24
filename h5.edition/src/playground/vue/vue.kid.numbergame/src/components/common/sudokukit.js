@@ -34,7 +34,7 @@ export default{
             if(checksum != 45) return {validation:false, check:3, refindex:index, checksum:checksum}
         }
         console.log('Sudoku is valid in columns.')
-        
+
         return {validation:true, check:0, refindex:0, checksum:checksum}
     },
 
@@ -137,45 +137,12 @@ export default{
         return map
     },
 
-    getNumber:function(index, sudoku, seed, grid_init_indes){
-        if(!seed){ seed = [1,2,3,4,5,6,7,8,9] }
-        let line_start_index =  this.getStartIndexInLine(index)
-        let column_indes = this.getIndexListInColum(index)
-        let existed_digits = []
-        for(let i = 0; i < 9; i++){
-            //digit in line
-            let existed_digit = sudoku[line_start_index + i] * 1
-            if(existed_digit > 0){
-                existed_digits.push(existed_digit)
-            }
-            //digit in column
-            existed_digit = sudoku[column_indes[i]]
-            if(existed_digit > 0){
-                existed_digits.push(existed_digit)
-            }
-        }
-        let grid_indes = this.getIndexListInGrid(index, grid_init_indes)
-        for(let gi of grid_indes){
-            let existed_digit = sudoku[gi] * 1
-            if(existed_digit > 0){
-                existed_digits.push(existed_digit)
-            }
-        }
-
-        for(let number of seed.filter(s => !existed_digits.includes(s))){
-            return number;
-        }
-    },
-
     getSudokuSourceData:function(){
         let x_grid_count = 3
         let y_grid_count = 3
         let x_cell_count_per_grid = 3
         let y_cell_count_per_grid = 3
         let grid_seed = [1,2,3,4,5,6,7,8,9]
-        let grid_0_0 = this.generateSeedArray(grid_seed)//init grid
-        let grid_1_1 = this.generateSeedArray(grid_seed)
-        let grid_2_2 = this.generateSeedArray(grid_seed)        
         let sudoku = []
         let max_count_per_line = x_grid_count * x_cell_count_per_grid
         let max_count_per_column = y_grid_count * y_cell_count_per_grid
@@ -194,8 +161,6 @@ export default{
         }
 
         let source_seed = this.generateSeedArray(grid_seed)
-        let first_column = this.getIndexListInColum(0)
-        let last_column = this.getIndexListInColum(8)
         let grid_template = source_seed.slice(0)
 
         let current_line = 0
@@ -208,9 +173,6 @@ export default{
                             let temp_num = grid_template.shift()
                             grid_template.push(temp_num)
                         }
-                        if(line_index == 1 || line_index == 4 || line_index == 7){
-
-                        } 
                         current_line = line_index                      
                     }
                     let colindex = this.getColumnIndex(sudokuindex)
@@ -242,7 +204,7 @@ export default{
         grid_template = source_seed.slice(0)
         for(let gindex of grid_init_indes){
             let line_index = this.getLineIndex(gindex)
-            if(line_index > 3) break;
+            if(line_index > 3) break;//Last grid line needs to calculate by existed digits
             
             let grid_indes = this.getIndexListInGrid(gindex)
             let existed_digits = []
@@ -313,5 +275,45 @@ export default{
         }
 
         return sudoku;
+    },
+
+    getPuzzleLevel:function(level){
+        return (level)?(level < 2?2:(level > 5? 5:level)):3
+    },
+
+    getHidePositionInGrid:function(level){
+        level = this.getPuzzleLevel(level)
+        let hide_postions = []
+        let seed = [0,1,2,3,4,5,6,7,8]
+        for(let ri = 0; ri < level; ri++){
+            let lucky_pos = mathkit.get_random_number_index(seed.length);
+            hide_postions.push(seed[lucky_pos])
+            seed.splice(lucky_pos, 1);
+        }
+        return hide_postions
+    },
+
+    getSudokuPuzzle:function(level = 3){        
+        let sudoku = this.getSudokuSourceData()
+        let sudokuPuzzle = []
+        for(let sudokuitem of sudoku){
+            sudokuPuzzle.push({
+                value:sudokuitem,
+                display:sudokuitem
+            })
+        }
+        let position_in_grid = [0,1,2,3,4,5,6,7,8]
+        let grid_init_indes = this.getStartIndesInGrids(sudoku)
+        for(let grid_init_index of grid_init_indes){
+            let grid_indes = this.getIndexListInGrid(grid_init_index)
+            let seed = position_in_grid.slice(0)
+            let hide_postions = this.getHidePositionInGrid(level)
+            for(let lucky_pos of hide_postions){
+                let hide_index = grid_indes[lucky_pos]
+                sudokuPuzzle[hide_index].display = 0
+            }
+        }
+
+        return {SudokuPuzzle:sudokuPuzzle, Level:level}
     }
 }
