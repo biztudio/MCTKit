@@ -11,7 +11,7 @@
                   <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;">
                     <span v-if='r.display > 0 '>{{r.display}}</span>
                     <span style="font-style:oblique;color:gray" v-if='r.display <= 0 &&  mode > 0' >{{r.value}}</span>
-                    <span v-if='r.display <= 0 &&  mode <= 0'><input type="text" maxlength="1" class="sudoku_input"/></span>                               
+                    <span v-if='r.display <= 0 &&  mode <= 0'><input type="text" maxlength="1" class="sudoku_input" onkeypress='return event.charCode >= 49 && event.charCode <= 57'/></span>                               
                   </div>
                 </td>
             </tr>
