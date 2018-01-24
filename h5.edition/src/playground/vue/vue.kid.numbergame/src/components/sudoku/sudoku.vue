@@ -44,7 +44,7 @@
   border-bottom-width: 1px;
   border-left-width: 0px;
   font-size: 25px;
-  width: 30px
+  width: 26px
 }
 
 </style>
