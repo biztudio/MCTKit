@@ -14,6 +14,8 @@ export default{
             }
             if(checksum != 45) return {validation:false, check:1, refindex:grid_init_index, checksum:checksum}
         }
+        console.log('Sudoku is valid in grids.')
+        
         for(let first_index_in_line of first_indes_per_line){
             checksum = 0
             for(let index = first_index_in_line; index < first_index_in_line + 9; index++){
@@ -21,6 +23,8 @@ export default{
             }
             if(checksum != 45) return {validation:false, check:2, refindex:first_index_in_line, checksum:checksum}
         }
+        console.log('Sudoku is valid in lines.')
+        
         for(let index = 0; index < 9; index++){
             let col_indes = this.getIndexListInColum(index)
             checksum = 0
@@ -29,7 +33,8 @@ export default{
             }
             if(checksum != 45) return {validation:false, check:3, refindex:index, checksum:checksum}
         }
-
+        console.log('Sudoku is valid in columns.')
+        
         return {validation:true, check:0, refindex:0, checksum:checksum}
     },
 
