@@ -2,7 +2,7 @@
   <div :id='id'>
     <div style="display:none">{{level}}.{{mode}}</div>
 
-  <div style="background-color:#0066CC;width:493px;height:493px;">
+  <div style="background-color:#0066CC;width:475px;height:475px;">
       <div v-for='(g, gi) in _grids' :style="g.style_config" > 
         
           <table class="grid_container">       

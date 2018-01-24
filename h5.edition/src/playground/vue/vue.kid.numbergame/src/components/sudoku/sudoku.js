@@ -30,7 +30,7 @@ export default{
             let y_axis_length = 3;
             let gp = 9;
             this._grids = [];
-            let top_pos = 45;
+            let top_pos = 25;
             let left_pos = 5;
             let display_mode = (this.mode!= undefined && this.mode && this.mode > 0)?1:0
             let grid_init_indes = sudokukit.getStartIndesInGrids(this._sudokuPuzzle)
@@ -55,8 +55,8 @@ export default{
                         }  
                         grid.push(row);                  
                     }
-                    let top =  (top_pos + 161 * parseInt(g/3));
-                    let left =  (left_pos + 161 * ((g)%3));
+                    let top =  (top_pos + 155 * parseInt(g/3));
+                    let left =  (left_pos + 155 * ((g)%3));
                     let styleObject = {
                         color: '#000000',
                         fontWeight: 'bold',
