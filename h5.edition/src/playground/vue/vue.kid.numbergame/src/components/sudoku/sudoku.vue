@@ -11,7 +11,7 @@
                   <div style="width:50px;height:50px;text-align:center;position:relative;top:5px;">
                     <span v-if='r.display > 0 '>{{r.display}}</span>
                     <span style="font-style:oblique;color:gray" v-if='r.display <= 0 &&  mode > 0' >{{r.value}}</span>
-                    <span v-if='r.display <= 0 &&  mode <= 0'> </span>                               
+                    <span v-if='r.display <= 0 &&  mode <= 0'><input type="text" maxlength="1" class="sudoku_input"/></span>                               
                   </div>
                 </td>
             </tr>
@@ -33,15 +33,18 @@
     border:solid#000 1px;
 }
 
-.time_score{
-  border-color: #878787;
+.sudoku_input{
+  left: 10px;
+  position: relative;
+  color: #993366;
+  border-color: #ffffff;
   border-style: solid;
   border-top-width: 0px;
   border-right-width: 0px;
   border-bottom-width: 1px;
   border-left-width: 0px;
-  font-size: 15px;
-  width: 100px
+  font-size: 25px;
+  width: 30px
 }
 
 </style>
