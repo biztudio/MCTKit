@@ -302,11 +302,9 @@ export default{
                 display:sudokuitem
             })
         }
-        let position_in_grid = [0,1,2,3,4,5,6,7,8]
         let grid_init_indes = this.getStartIndesInGrids(sudoku)
         for(let grid_init_index of grid_init_indes){
             let grid_indes = this.getIndexListInGrid(grid_init_index)
-            let seed = position_in_grid.slice(0)
             let hide_postions = this.getHidePositionInGrid(level)
             for(let lucky_pos of hide_postions){
                 let hide_index = grid_indes[lucky_pos]
