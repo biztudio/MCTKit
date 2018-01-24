@@ -34,7 +34,7 @@
 }
 
 .sudoku_input{
-  left: 10px;
+  left: 6px;
   position: relative;
   color: #993366;
   border-color: #ffffff;
@@ -44,6 +44,7 @@
   border-bottom-width: 1px;
   border-left-width: 0px;
   font-size: 25px;
+  font-weight: bold;
   width: 26px
 }
 
