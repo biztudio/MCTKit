@@ -3,6 +3,7 @@ import sudokukit from '../common/sudokukit'
 
 export default{
     data(){
+        console.log('new data...')
         return{
             _grids:[],
             _sudokuPuzzle:[]
@@ -15,10 +16,6 @@ export default{
     },
 
     watch:{
-        mode:function(){            
-            this.drawsudoku()
-        },
-
         level:function(){
             this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
             this.drawsudoku()
@@ -28,7 +25,6 @@ export default{
     methods:{
 
         drawsudoku:function(){
-            //console.log(this._sudokuPuzzle)
             let x_axis_length = 9;
             let y_axis_length = 9;
             let gp = 1;
@@ -44,13 +40,15 @@ export default{
                     for(let x_axis_index = 0; x_axis_index < x_axis_length; x_axis_index++){
                         if(grid_cell_value_list.length > 0){
                             let letter = grid_cell_value_list.shift();
+                            row.push(letter)
+                            /*
                             if(display_mode <= 0){
                                 row.push(letter.display);
                             }
                             else{
-                                console.log(letter.value)
                                 row.push(letter.value)
                             }
+                            */
                         }
                         else{
                             row.push('');
