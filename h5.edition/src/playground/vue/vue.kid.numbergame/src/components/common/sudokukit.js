@@ -278,7 +278,7 @@ export default{
     },
 
     getPuzzleLevel:function(level){
-        return (level)?(level < 2?2:(level > 5? 5:level)):3
+        return (level)?(level < 2?2:(level > 6? 6:level)):3
     },
 
     getHidePositionInGrid:function(level){

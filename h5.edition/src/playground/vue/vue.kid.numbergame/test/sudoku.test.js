@@ -96,7 +96,9 @@ describe('Test Sudoku Kit', ()=>{
         level = sudokukit.getPuzzleLevel(2)
         expect(level).toBe(2)
         level = sudokukit.getPuzzleLevel(6)
-        expect(level).toBe(5)
+        expect(level).toBe(6)
+        level = sudokukit.getPuzzleLevel(7)
+        expect(level).toBe(6)
     });
 
 

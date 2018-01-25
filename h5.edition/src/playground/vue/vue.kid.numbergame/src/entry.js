@@ -24,7 +24,8 @@ var capp = new Vue({
             {value:'2', label:'Easy'},
             {value:'3', label:'Normal'},
             {value:'4', label:'Interesting'},
-            {value:'5', label:'Challenge'}           
+            {value:'5', label:'Challenge'},
+            {value:'6', label:'King'}             
         ],
         sudoku_mode_list:[
             {value:'0', label:'Practice'},
