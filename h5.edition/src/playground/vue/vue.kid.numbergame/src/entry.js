@@ -73,6 +73,15 @@ var capp = new Vue({
     },
 
     methods:{
+        refresh_sudoku:function(event){
+            // `this` 在方法里指向当前 Vue 实例
+            alert('Hello !')
+            // `event` 是原生 DOM 事件
+            if (event) {
+                alert(event.target.tagName)
+            }
+        },
+
         add_new_todoitem:function(){
             console.log('Hi, todo.')
         }

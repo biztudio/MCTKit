@@ -43,6 +43,11 @@
                 <sudoku id = 'mxmnc' :level='sudoku_level_model' :mode = 'sudoku_mode_model'></sudoku>
               </div>    
         </div>
+
+        <div class="noprint" style="position:absolute;left:168px;top:500px;">
+                <button v-on:click='refresh_sudoku'>Click to get a new Sudoku</button>
+        </div>    
+
         <div class="noprint" style="top:550px; left:10px;position:absolute;">
             <ul>
                 <li >Please use web browser <strong> Chrome / Firefox / Opera </strong>to open this sudoku.</li>
