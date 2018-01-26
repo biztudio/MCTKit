@@ -33,7 +33,7 @@ export default{
         drawsudoku:function(){
             let x_axis_length = 3;
             let y_axis_length = 3;
-            let gp = 9;
+            let gp = x_axis_length * y_axis_length;
             this._grids = [];
             let top_pos = 25;
             let left_pos = 5;
