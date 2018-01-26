@@ -5,25 +5,30 @@ export default{
     data(){
         console.log('new data...')
         return{
-            _grid_container:[],
             _grids:[],
             _sudokuPuzzle:[]
         }
     },
 
     created:function(){
-       this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
-       this.drawsudoku()
+       this.refresh_sudoku()
     },
 
     watch:{
         level:function(){
-            this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
-            this.drawsudoku()
+            this.refresh_sudoku()
         }
     },
 
     methods:{
+
+        refresh_sudoku:function(event){
+            if(event){
+                console.log('refreshing...')
+            }
+            this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
+            this.drawsudoku()
+        },
 
         drawsudoku:function(){
             let x_axis_length = 3;

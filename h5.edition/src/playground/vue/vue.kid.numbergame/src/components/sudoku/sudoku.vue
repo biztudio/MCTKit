@@ -17,7 +17,12 @@
             </tr>
           </table>
       </div> 
-  
+
+      <div class="noprint" style="position:absolute;left:168px;top:500px;">
+          <button v-on:click='refresh_sudoku'>Click to get a new Sudoku</button>
+      </div>   
+
+  </div>
 </template>
 <style>
 [draggable=true] {
