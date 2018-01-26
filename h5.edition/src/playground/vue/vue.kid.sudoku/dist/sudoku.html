@@ -35,7 +35,7 @@
                         Mode:                         
                         <span v-for='(m, i) in sudoku_mode_list'>
                             <input type="radio" :id='m.value' :value="m.value" v-model='sudoku_mode_model'></input>
-                            <label :for="m.value">{{m.label}}</label>
+                            <label :for="m.value">{{m.label}}&nbsp;</label>
                         </span>    
 
                         <br />
