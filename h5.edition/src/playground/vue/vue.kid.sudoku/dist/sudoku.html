@@ -26,9 +26,7 @@
 
     <body>
         <div id='capp'>    
-             <div class="noprint">Sudoku
-                
-                        Level:  
+                <div class="noprint">Sudoku Level:  
                         <select v-model='sudoku_level_model'>
                                 <option :value ="l.value" v-for='(l, li) in sudoku_level_list'>{{l.label}}</option>
                         </select>
@@ -37,15 +35,21 @@
                             <input type="radio" :id='m.value' :value="m.value" v-model='sudoku_mode_model'></input>
                             <label :for="m.value">{{m.label}}&nbsp;</label>
                         </span>    
-
                         <br />
                         <hr />
                     
-              </div>       
-              <div>
-                <sudoku id = 'mxmnc' :level='sudoku_level_model' :mode = 'sudoku_mode_model'></sudoku>
-              </div>    
+                </div>       
+              
+                <div>
+                    <sudoku id = 'mxmnc' :level='sudoku_level_model' :mode = 'sudoku_mode_model' ref="compsudoku"></sudoku>
+                </div>    
+
+                <div class="noprint" style="top:500px; left:185px;position:absolute;">
+                        <button @click='refresh_sudoku' >&nbsp;Refresh Sudoku&nbsp;</button>
+                </div>
         </div> 
+
+      
 
         <div class="noprint" style="top:550px; left:10px;position:absolute;">
             <ul>

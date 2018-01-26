@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
+import 'babel-polyfill';
 import Vue from 'vue';
 //import Vuex from 'vuex';
-import 'babel-polyfill';
 import sudoku from './components/sudoku/sudoku.vue';
 
 Vue.component('sudoku',sudoku);
@@ -27,13 +27,9 @@ var capp = new Vue({
         group_model:1,       
     },
 
-    watch:{
-        sudoku_level_list:function(){
-            //this.sudoku_level_model = 0
-        }
-    },
-
     methods:{
-        
+        refresh_sudoku:function(event){
+            this.$refs.compsudoku.refresh_sudoku()
+        }
     }
 });

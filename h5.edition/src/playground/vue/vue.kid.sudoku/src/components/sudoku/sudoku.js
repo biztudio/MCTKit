@@ -22,10 +22,7 @@ export default{
 
     methods:{
 
-        refresh_sudoku:function(event){
-            if(event){
-                console.log('refreshing...')
-            }
+        refresh_sudoku:function(event){           
             this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
             this.drawsudoku()
         },
