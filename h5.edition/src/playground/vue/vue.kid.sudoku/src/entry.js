@@ -31,6 +31,9 @@ var capp = new Vue({
     methods:{
         refresh_sudoku:function(event){
             this.refresh_model++
+            if(this.refresh_model >=1000){
+                this.refresh_model = 0
+            }
             this.sudoku_mode_model = 0
         }
     }
