@@ -363,3 +363,5 @@ h5.edition/src/playground/vue/vue.kid.numbergame/dist/app.bundle.js
 .vscode/
 /wxapp.edition/mctkit.wx/dist
 /wxapp.edition/mctkit.wx/yarn.lock
+/h5.edition/src/playground/vue/vue.kid.sudoku/dist/vendor.bundle.js
+/h5.edition/src/playground/vue/vue.kid.sudoku/dist/app.bundle.js
