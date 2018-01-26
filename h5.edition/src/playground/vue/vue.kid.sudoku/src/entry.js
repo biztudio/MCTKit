@@ -12,6 +12,7 @@ var capp = new Vue({
     data:{
         sudoku_level_model:3,
         sudoku_mode_model:0,
+        refresh_model:0,
         sudoku_level_list:[
             {value:'2', label:'Easy'},
             {value:'3', label:'Normal'},
@@ -29,7 +30,8 @@ var capp = new Vue({
 
     methods:{
         refresh_sudoku:function(event){
-            this.$refs.compsudoku.refresh_sudoku()
+            this.refresh_model++
+            this.sudoku_mode_model = 0
         }
     }
 });

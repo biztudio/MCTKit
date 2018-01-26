@@ -1,6 +1,6 @@
 <template>
   <div :id='id'>
-    <div style="display:none">{{level}}.{{mode}}</div>
+    <div style="display:none">{{level}}.{{mode}}.{{refresh}}</div>
 
     <div style="background-color:#0066CC;width:475px;height:475px;">
 

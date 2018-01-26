@@ -17,12 +17,17 @@ export default{
     watch:{
         level:function(){
             this.refresh_sudoku()
+        },
+
+        refresh:function(){
+            this.refresh_sudoku()
         }
     },
 
     methods:{
 
-        refresh_sudoku:function(event){           
+        refresh_sudoku:function(refreshedBy){
+            if(refreshedBy){}
             this._sudokuPuzzle = sudokukit.getSudokuPuzzle(this.level).SudokuPuzzle
             this.drawsudoku()
         },
@@ -73,6 +78,7 @@ export default{
         'group',
         'level',
         'mode',
+        'refresh',
         'id'
     ]
 }
