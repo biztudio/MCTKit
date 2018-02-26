@@ -1,11 +1,7 @@
-import { Component } from 'react';
+import React from 'react';
 
-class Sudoku extends Comment{
-    render(){
+export default function Sudoku(props) { 
         return (
             <h1>My Sudoku!!!</h1>
         );
-    }
 }
-
-export default Sudoku;
