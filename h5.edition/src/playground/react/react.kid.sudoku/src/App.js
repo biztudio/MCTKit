@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import TestTag from './components/testtag';
-import MyTestTag from "./components/classtag";
+import { MyTestTag, MyTestTagAdvanced } from "./components/classtag";
 
 class App extends Component {
   render() {
@@ -17,15 +17,17 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        < TestTag level = "3" / >
+        <TestTag level = "3" / >
         
         <TestTag level = "5" / >
 
-        < TestTag level = "8" />
+        <TestTag level = "8" />
 
-        < TestTag level="11" />
+        <TestTag level="11" />
 
         <MyTestTag level="1"/>
+
+        <MyTestTagAdvanced level="3" />
       </div>
     );
   }
