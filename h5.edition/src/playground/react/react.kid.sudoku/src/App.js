@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Sudoku from './components/sudoku';
+import TestTag from './components/testtag';
 
 class App extends Component {
   render() {
@@ -16,7 +16,13 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
-        <Sudoku />
+        < TestTag level = "3" / >
+        
+        <TestTag level = "5" / >
+
+        < TestTag level = "8" />
+
+        < TestTag level="11" />
       </div>
     );
   }
