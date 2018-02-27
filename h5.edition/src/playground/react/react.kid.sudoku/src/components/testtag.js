@@ -1,5 +1,6 @@
 import React from 'react';
 
+//to define a component via a function
 export default function TestTag(props) { 
     if (props.level <= 3) {
         return (            

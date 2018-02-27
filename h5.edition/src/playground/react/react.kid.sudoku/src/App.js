@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import TestTag from './components/testtag';
+import MyTestTag from "./components/classtag";
 
 class App extends Component {
   render() {
@@ -23,6 +24,8 @@ class App extends Component {
         < TestTag level = "8" />
 
         < TestTag level="11" />
+
+        <MyTestTag />
       </div>
     );
   }
