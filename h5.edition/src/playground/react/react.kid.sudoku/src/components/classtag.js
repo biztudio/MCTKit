@@ -4,7 +4,7 @@ import React from 'react';
 class MyTestTag extends React.Component{
     render(){
         return (
-            <h1>My MyTestTag! </h1>
+            <h1>My MyTestTag! Level: {this.props.level}</h1>
         );
     }
 }

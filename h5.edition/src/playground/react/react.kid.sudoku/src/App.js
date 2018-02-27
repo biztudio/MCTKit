@@ -25,7 +25,7 @@ class App extends Component {
 
         < TestTag level="11" />
 
-        <MyTestTag />
+        <MyTestTag level="1"/>
       </div>
     );
   }
