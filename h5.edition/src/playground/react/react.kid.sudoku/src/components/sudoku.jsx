@@ -48,20 +48,27 @@ export class SudokuTag extends React.Component{
 
     render(){        
         let _grids = this.getsudokugrids();
-
+        let cell_style = {
+            width: '50px', height: '50px', 
+            textAlign:'center', 
+            position: 'relative', 
+            top: '5px'
+        }
         let grids_div = []
         for(let g of _grids){
             let tr = []
             for(let h of g.data){
                 let td = []
                 for(let r of h){
-                    td.push(<td>
-                         <span> { r.display }</span>
+                    td.push(
+                    <td><div style={cell_style}>
+                            <span> { r.display }</span>
+                        </div>
                     </td>)
                 }
                 tr.push(<tr>{td}</tr>)
             }
-            grids_div.push(<div>
+            grids_div.push(<div style={g.style_config}>
                 <table>{tr}</table>
             </div>)
         }
@@ -69,14 +76,14 @@ export class SudokuTag extends React.Component{
         let sudokuBackgroudStyle = {
             backgroundColor:'#0066CC',
             width:'475px',
-            height:'475px'
+            height:'475px',
+            //position: 'relative', 
+            //top: '15px'
         };
         
         return(
             <div>
-                <div style={sudokuBackgroudStyle}>
-                    {grids_div}
-                </div>
+                <div style={sudokuBackgroudStyle}>{grids_div}</div>
             </div>            
         );
     }
