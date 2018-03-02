@@ -56,7 +56,7 @@ export class SudokuTag extends React.Component{
                 let td = []
                 for(let r of h){
                     td.push(<td>
-                         <span> { r.value }</span>
+                         <span> { r.display }</span>
                     </td>)
                 }
                 tr.push(<tr>{td}</tr>)
@@ -66,9 +66,15 @@ export class SudokuTag extends React.Component{
             </div>)
         }
 
+        let sudokuBackgroudStyle = {
+            backgroundColor:'#0066CC',
+            width:'475px',
+            height:'475px'
+        };
+        
         return(
             <div>
-                <div>
+                <div style={sudokuBackgroudStyle}>
                     {grids_div}
                 </div>
             </div>            
