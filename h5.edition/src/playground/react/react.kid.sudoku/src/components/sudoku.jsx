@@ -1,5 +1,7 @@
+/*jshint esversion: 6 */
 import React from 'react';
 import sudokukit from 'sudokukit';
+import './sudoku.css';
 
 export class SudokuTag extends React.Component{
    
@@ -9,8 +11,8 @@ export class SudokuTag extends React.Component{
         let x_axis_length = 3;
         let y_axis_length = 3;
         let gp = x_axis_length * y_axis_length;
-        let top_pos = 25;
-        let left_pos = 5;
+        let top_pos = 2;
+        let left_pos = 2;
         let display_mode = (this.props.mode != undefined && this.props.mode && this.props.mode > 0) ? 1 : 0
         let grid_init_indes = sudokukit.getStartIndesInGrids(_sudokuPuzzle)
         for (let g = 0; g < gp; g++) {
@@ -54,6 +56,10 @@ export class SudokuTag extends React.Component{
             position: 'relative', 
             top: '5px'
         }
+
+        let td_style = {
+            border:'solid#0066CC 1px'
+        }
         let grids_div = []
         for(let g of _grids){
             let tr = []
@@ -61,7 +67,8 @@ export class SudokuTag extends React.Component{
                 let td = []
                 for(let r of h){
                     td.push(
-                    <td><div style={cell_style}>
+                    <td style={td_style}>
+                        <div style={cell_style}>
                             <span> { r.display }</span>
                         </div>
                     </td>)
@@ -69,7 +76,7 @@ export class SudokuTag extends React.Component{
                 tr.push(<tr>{td}</tr>)
             }
             grids_div.push(<div style={g.style_config}>
-                <table>{tr}</table>
+                <table className="grid_container">{tr}</table>
             </div>)
         }
 
