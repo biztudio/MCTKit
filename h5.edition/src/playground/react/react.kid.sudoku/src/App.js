@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SudokuTag mode = "1" level = "3" />
+        <SudokuTag mode = "0" level = "3" />
       </div>
     );
   }
