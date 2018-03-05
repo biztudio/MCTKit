@@ -54,28 +54,28 @@ export class SudokuTag extends React.Component{
             textAlign:'center', 
             position: 'relative', 
             top: '5px'
-        }
+        };
 
-        let td_style = { border:'solid#0066CC 1px' }
-        let span_answer = {fontStyle:'oblique', color:'gray'}
+        let td_style = { border:'solid#0066CC 1px' };
+        let span_answer = {fontStyle:'oblique', color:'gray'};
 
         let grids_div = [];
         let keycell = 0;
         for(let g of _grids){
-            let tr = []
+            let tr = [];
             for(let h of g.data){
-                let td = []
+                let td = [];
                 for(let r of h){
 
-                    let span_tag = ( <span> { r.display }</span>);
+                    let span_tag = (<span> { r.display }</span>);
                     
                     if(r.display <= 0){
                         if(this.props.mode >0){
-                            span_tag = <span style={span_answer} >{r.value}</span>
+                            span_tag = (<span style={span_answer} >{r.value}</span>);
                         }
                         else{
                             // onKeyPress='return event.charCode >= 49 && event.charCode <= 57'
-                            span_tag = <span><input type="text" maxLength="1" className="sudoku_input"/></span>
+                            span_tag = (<span><input type="text" maxLength="1" className="sudoku_input"/></span>);
                         }                        
                     }
 
@@ -84,13 +84,13 @@ export class SudokuTag extends React.Component{
                             </td>);
                     keycell++;        
                 }
-                tr.push(<tr key={keycell}>{td}</tr>)
+                tr.push(<tr key={keycell}>{td}</tr>);
             }
             grids_div.push(<div style={g.style_config} key={keycell}> 
                 <table className="grid_container">
                     <tbody>{tr}</tbody>
                 </table>
-            </div>)
+            </div>);
         }
 
         let sudokuBackgroudStyle = {
