@@ -41,6 +41,7 @@
   position: relative;
   color: #993366;
   border-color: #ffffff;
+  background: #ffffff;
   border-style: solid;
   border-top-width: 0px;
   border-right-width: 0px;
