@@ -3698,9 +3698,9 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
-randomlibiz@0.0.1:
-  version "0.0.1"
-  resolved "http://registry.npm.taobao.org/randomlibiz/download/randomlibiz-0.0.1.tgz#3d15a90810954834229e9a78f16abd5904548b63"
+randomlibiz@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/randomlibiz/-/randomlibiz-1.0.0.tgz#d5eb2e7a00de09d2f3a06a4bc8ddd9bd0abb4b47"
 
 rc@^1.1.7:
   version "1.2.6"
