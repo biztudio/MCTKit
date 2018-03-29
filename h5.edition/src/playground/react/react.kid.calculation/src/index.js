@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Formular from './components/formular/formular';
+import { FormularTag } from './components/formular/formular';
 
 ReactDOM.render(
-    <Formular />, document.getElementById('root')
+    <FormularTag />, document.getElementById('app')
 );

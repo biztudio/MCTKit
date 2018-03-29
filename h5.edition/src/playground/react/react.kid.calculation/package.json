@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "Yang SHEN",
@@ -19,6 +20,7 @@
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.11",
@@ -27,6 +29,7 @@
     "jest": "^22.4.2",
     "style-loader": "^0.20.3",
     "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1"
   },
   "jest": {
