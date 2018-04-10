@@ -1,13 +1,18 @@
 language: javascript
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.5.1
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
 script: 
     - cd h5.edition
     - cd src
     - cd playground
     - cd react
     - cd react.kid.calculation
-    - npm i
-    - npm run test
-    - npm run build
+    - yarn
+    - yarn test
+    - yarn build
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
