@@ -8,7 +8,7 @@ script:
     - cd h5.edition/src/playground/react/react.kid.calculation/
     - yarn
     - yarn test
-    - yarn build
+    #- yarn build
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
